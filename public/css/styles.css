@@ -1,0 +1,483 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0a1931;
+    color: #ffffff;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    padding: 10px 0;
+    height: 80px;
+}
+
+.navbar .container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.navbar-brand {
+    position: absolute;
+    left: 120px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.navbar-brand img {
+    max-height: 50px;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 240px); /* 120px na vsaki strani za logo */
+    margin: 0 auto;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+    font-size: 20px;
+}
+
+.nav-link:hover {
+    color: #4da8da !important;
+}
+.nav-link.active {
+    color: #4da8da !important;
+    font-weight: bold;
+}
+
+
+/* Za manjše zaslone */
+@media (max-width: 991px) {
+    .navbar .container-fluid {
+        justify-content: space-between;
+    }
+
+    .navbar-brand {
+        position: static;
+        transform: none;
+    }
+
+    .navbar-toggler {
+        order: 2;
+    }
+
+    .navbar-collapse {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        height: 100vh;
+        width: 100px;
+        background-color: #0a1931;
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    .navbar-collapse.show {
+        right: 0;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        width: auto;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: 10px 0;
+    }
+}
+
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.overlay.show {
+    display: block;
+}
+
+
+
+
+.hero-container {
+    min-height: 100vh;
+    background-image: url('../images/homepage/ozadje.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow-y: auto;
+}
+
+.hero-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(var(--blur, 0px));
+    transition: backdrop-filter 0.3s ease;
+    z-index: 1;
+}
+.hero-container.blurred::before {
+    backdrop-filter: blur(15px);
+}
+
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size: 8rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 4rem;
+    font-weight: 560;
+
+}
+
+.scrollable-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.home-page .scrollable-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.home-page .scrollable-content.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.home-page .scrollable-content.initial-hide {
+    visibility: hidden;
+}
+
+
+.info-section {
+    background-color: rgb(58 58 58 / 59%);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px); /* Za podporo v Safari brskalniku */
+
+}
+
+
+.info-section p{
+    font-size: 18px;
+}
+
+h1, h2, h4 {
+    color: #4da8da;
+    text-align: center;
+}
+h4{
+    text-align: left;
+}
+ul {
+    padding-left: 20px;
+}
+
+a {
+    color: #4da8da;
+    text-decoration: none;
+}
+
+
+
+/* GUMBA START */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Povečamo prostor med gumboma */
+    margin-top: 20px;
+}
+
+.btn-custom {
+    background-color: rgba(77, 168, 218, 0.2);
+    border: 1px solid rgba(77, 168, 218, 0.5);
+    color: #ffffff;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 30px;
+    width: auto; /* Omogočimo, da se širina prilagodi vsebini */
+    min-width: 150px; /* Nastavimo minimalno širino */
+    text-align: center;
+    white-space: nowrap;
+}
+
+.btn-custom:hover, .btn-custom:focus {
+    background-color: rgba(77, 168, 218, 0.4);
+    border-color: rgba(77, 168, 218, 0.8);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary.btn-custom {
+    background-color: rgba(77, 168, 218, 0.3);
+}
+
+.btn-secondary.btn-custom {
+    background-color: rgba(108, 117, 125, 0.3);
+}
+/* GUMBA END */
+
+
+/* FOOTER START */
+/* ... obstoječi stili ... */
+
+.site-footer {
+    background-color: rgba(10, 25, 49, 0.8);
+    padding: 20px 0;
+    margin-top: 40px;
+    position: relative; /* Dodano za zagotovitev, da je footer nad zamegljenim ozadjem */
+    z-index: 10; /* Zagotovimo, da je footer nad zamegljenim ozadjem */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+.footer-info {
+    text-align: center;
+    flex: 1;
+    margin: 0 20px;
+}
+
+.footer-info p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icon img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover img {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-logo, .footer-info, .footer-social {
+        margin-bottom: 20px;
+    }
+}
+/* FOOTER END */
+
+.kt-title{
+    font-weight: bold;
+    color: #4da8da;
+}
+
+th, td{
+    color: white;
+}
+
+.margin-top{
+    margin-top: 10%;
+}
+
+
+
+
+
+
+/* MOBILE */
+
+/* ... (obstoječi stili) ... */
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+
+    .hero-content p {
+        font-size: 2rem;
+    }
+
+    .btn-custom {
+        font-size: 18px;
+        padding: 8px 16px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .info-section {
+        padding: 20px;
+    }
+
+    .info-section p {
+        font-size: 16px;
+    }
+
+    h1, h2 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    .navbar-brand {
+        left: 10px;
+    }
+
+    .navbar-brand img {
+        max-height: 40px;
+    }
+
+    .nav-link {
+        font-size: 16px;
+        margin: 0 10px;
+    }
+
+    .content-wrapper {
+        padding: 60px 15px;
+    }
+
+    .margin-top {
+        margin-top: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+    }
+
+    .btn-custom {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+
+    .info-section p {
+        font-size: 14px;
+    }
+
+    h1, h2 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    .navbar-brand img {
+        max-height: 30px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+        margin: 0 5px;
+    }
+}
+
+/* Prilagoditve za tabele na mobilnih napravah */
+@media (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 5px;
+    }
+}
+
+/* Dodatne prilagoditve za zelo majhne zaslone */
+@media (max-width: 320px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .btn-custom {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+}
