@@ -20,7 +20,7 @@
                 <p><b>Kdaj:</b> 30. 11. – 1. 12. 2024</p>
                 <p>Prijave se odprejo ob 14.00 in zaprejo ob 15.30. Nato sledi zbor ekip. Zaključni zbor ekip bo v soboto okoli 9.00.
                 </p>
-                <p><b>Kje:</b> Osnovna šola Dob</p>
+                <p><b>Kje:</b>/</p>
             </section>
 
             <section class="info-section">
