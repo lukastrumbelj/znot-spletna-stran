@@ -21,6 +21,15 @@
                 <p>Prijave se odprejo ob 14.00 in zaprejo ob 15.30. Nato sledi zbor ekip. Zaključni zbor ekip bo v soboto okoli 9.00.
                 </p>
                 <p><b>Kje:</b>/</p>
+                <br>
+                <p>Vsi mladoletni udeleženci morajo ob prijavi predložiti še potrdilo za mladoletne osebe, v primeru da tega ne naredijo se ne bodo smeli udeležiti tekmovanja. Prav tako se nobena ekipa (mladoletni in polnoletni) ne bo smela udeležiti tekmovanja, če pred tekmovanjem ne bo poslana Izjava starešine na mail <b>znot.rst@gmail.com</b>. Netaborniške ekipe morajo prav tako poslati enako izjavo, ki jo podpiše predsednik kluba oz. vodja društva.
+                </p>
+                <div class="button-container" style="justify-content:center;">
+                    <a href="{{ asset('files/izjava-staresine.pdf') }}" class="btn btn-custom btn-primary" target="_blank">Izjava starešine</a>
+                    <a href="{{ asset('files/potrdilo-za-mladoletne.pdf') }}" class="btn btn-custom btn-primary" target="_blank">Potrdilo za mladoletne</a>
+                </div>
+
+
             </section>
 
             <section class="info-section">
@@ -82,8 +91,6 @@
                 <p>(Upoštevali bomo samo tista plačila, za katera se bo iz namena plačila nedvoumno videlo za katero ekipo je namenjeno).
                 </p>
 
-                <p>Vsi mladoletni udeleženci morajo ob prijavi predložiti še potrdilo za mladoletne osebe, v primeru da tega ne naredijo se ne bodo smeli udeležiti tekmovanja. Prav tako se nobena ekipa (mladoletni in polnoletni) ne bo smela udeležiti tekmovanja, če pred tekmovanjem ne bo poslana Izjava starešine na mail <b>znot.rst@gmail.com</b>. Netaborniške ekipe morajo prav tako poslati enako izjavo, ki jo podpiše predsednik kluba oz. vodja društva.
-                </p>
                 <p>Plačilo štartnin in prijave na dan tekmovanja niso možne. Pridržujemo si pravico, da rok prijav skrajšamo ob zapolnitvi prostih mest!
                 </p>
             </section>
