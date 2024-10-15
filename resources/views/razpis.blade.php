@@ -8,6 +8,11 @@
         <section class="hero-content">
             <h1>ZNOT 2024</h1>
             <p style="color: #4da8da">30.11. – 1.12.2024</p>
+                <a href="https://google.com/maps/place/Osnovna+%C5%A1ola+Zalog/@46.0623958,14.6135001,944m/data=!3m1!1e3!4m6!3m5!1s0x476531b93ceddbe3:0xe7b868d0291e7b22!8m2!3d46.0624051!4d14.6150917!16s%2Fg%2F1hc25yvpv?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 20px;">
+                    <img src="/images/location.svg" alt="Lokacija" class="location">
+                    <h3 class="text-location">Osnovna šola Zalog
+                    </h3>
+                </a>
             <div class="button-container">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScxIFI6naDXaDlA4T8-yiw7UT1bbcayUfp66t0dd-rEqXXtQQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSecCuyssADh18s3zzXIaI0_kLvA__nqNzVBTYOyZPzf_yNWrQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
@@ -20,7 +25,7 @@
                 <p><b>Kdaj:</b> 30. 11. – 1. 12. 2024</p>
                 <p>Prijave se odprejo ob 14.00 in zaprejo ob 15.30. Nato sledi zbor ekip. Zaključni zbor ekip bo v soboto okoli 9.00.
                 </p>
-                <p><b>Kje:</b>/</p>
+                <p><b>Kje: </b><a href="https://www.google.com/maps/place/Osnovna+%C5%A1ola+Zalog/@46.0623958,14.6135001,944m/data=!3m1!1e3!4m6!3m5!1s0x476531b93ceddbe3:0xe7b868d0291e7b22!8m2!3d46.0624051!4d14.6150917!16s%2Fg%2F1hc25yvpv?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="location-href">Osnovna šola Zalog</a></p>
                 <br>
                 <p>Vsi mladoletni udeleženci morajo ob prijavi predložiti še potrdilo za mladoletne osebe, v primeru da tega ne naredijo se ne bodo smeli udeležiti tekmovanja. Prav tako se nobena ekipa (mladoletni in polnoletni) ne bo smela udeležiti tekmovanja, če pred tekmovanjem ne bo poslana Izjava starešine na mail <b>znot.rst@gmail.com</b>. Netaborniške ekipe morajo prav tako poslati enako izjavo, ki jo podpiše predsednik kluba oz. vodja društva.
                 </p>

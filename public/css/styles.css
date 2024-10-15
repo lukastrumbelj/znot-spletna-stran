@@ -57,7 +57,24 @@ body, html {
     font-weight: bold;
 }
 
+.location{
+    width: 50px; 
+    height: 50px; 
+    margin-right: 5px;
+}
 
+.text-location{
+    color: #4da8da; margin-bottom:0px; margin-top:0px; font-size:3rem;
+}
+.text-location:hover{
+    text-decoration: underline;
+}
+.location-href{
+    color: white;
+}
+.location-href:hover{
+    text-decoration: underline;
+}
 /* Za manjše zaslone */
 @media (max-width: 991px) {
     .navbar .container-fluid {
@@ -337,6 +354,15 @@ a {
     .footer-logo, .footer-info, .footer-social {
         margin-bottom: 20px;
     }
+    .location{
+        width: 20px; 
+        height: 20px; 
+        margin-right: 5px;
+    }
+    .text-location{
+        font-size: 22px;
+    }
+    
 }
 /* FOOTER END */
 
@@ -481,3 +507,4 @@ th, td{
         padding: 5px 10px;
     }
 }
+
