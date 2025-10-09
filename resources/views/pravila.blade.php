@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'ZNOT 2024 - Pravila')
+@section('title', 'ZNOT 2025 - Pravila')
 
 @section('content')
 <div class="hero-container blurred">
@@ -46,8 +46,8 @@
                         @case(3)
                             <p>Tekmovalci tekmujejo v štirih kategorijah:</p>
                             <ul>
-                                <li>100 – Mlajši Gozdovniki in gozdovnice (GG) – od 11 do 12 let</li>
-                                <li>200 – Starejši Gozdovniki in gozdovnice (GG) – od 13 do 14 let</li>
+                                <li>100 – Mlajši gozdovniki in gozdovnice (GG) – od 11 do 12 let</li>
+                                <li>200 – Starejši gozdovniki in gozdovnice (GG) – od 13 do 14 let</li>
                                 <li>300 – Popotniki in popotnice (PP) – od 15 do 20 let</li>
                                 <li>500 – Raziskovalci ter raziskovalke (RR) ter grče (Gr) – 21 let in več</li>
                             </ul>
@@ -56,10 +56,10 @@
                             <p>Ekipe so lahko mešane, za vsako dekle se dobi bonus točke.</p>
                             @break
                         @case(5)
-                            <p>Ekipa šteje 5 članov. Ekipa s 4 člani lahko tekmuje brez olajšav. Ekipa s 3 ali manj člani tekmuje izven konkurence. Ekipa s 6 in več tekmovalci tekmuje prav tako izven konkurence, a je lahko eden od članov ekipe vodnik, ki ekipo spremlja na poti (za kategorijo mlajši GG).</p>
+                            <p>Ekipa šteje 5 članov. Ekipa s 4 člani lahko tekmuje brez olajšav. Ekipa s 3 ali manj člani tekmuje izven konkurence. Ekipa s 6 in več tekmovalci tekmuje prav tako izven konkurence, a je lahko eden od članov ekipe vodnik, ki ekipo spremlja na poti (za kategorijo mlajši GG). Tudi v tem primeru, ekipa tekmuje izven konkurence.</p>
                             @break
                         @case(6)
-                            <p>V ekipi lahko samo en član odstopa od starostne kategorije v kateri tekmuje, vendar ne več kot za 2 leti. Starost tekmovalcev organizator lahko preveri s pregledom osebnih dokumentov tekom tekmovanja. Starost tekmovalcev se računa po koledarskem letu.</p>
+                            <p>V ekipi lahko samo en član odstopa od starostne kategorije v kateri tekmuje, vendar ne več kot za 1 leto. Starost tekmovalcev organizator lahko preveri s pregledom osebnih dokumentov tekom tekmovanja. Starost tekmovalcev se računa po koledarskem letu.</p>
                             @break
                         @case(7)
                             <p>Vsi tekmovalci tekmujejo na lastno odgovornost.</p>
@@ -139,7 +139,7 @@
                             @break
                         @case(32)
                             <p><span class="kt-title">Bonus točke</span><br>
-                            Za vsako dekle ekipa prejme nekaj bonus točk. V kategoriji PP in RR/Grče za eno dekle v ekipi 20 točk, za dve dekleti 40 točk, za tri dekleta 60 točk za štiri dekleta 80 točk in za pet deklet 100 točk. Možno število točk: 100</p>
+                            Za vsako dekle ekipa prejme nekaj bonus točk. V kategoriji PP in RR/Grče za eno dekle v ekipi 20 točk, za dve dekleti 40 točk, za tri dekleta 60 točk za štiri dekleta 80 točk in za pet deklet 100 točk. <p><b>Možno število točk: 100</b></p></p>
                             @break
                         @case(33)
                             <p><span class="kt-title">Orientacijski pohod</span><br>
@@ -183,7 +183,7 @@
                             @break
                         @case(43)
                             <p><span class="kt-title">Štafeta</span><br>
-                            Je namenjena GG/PP/RR/Gr ekipam. Ekipa mora opraviti 5 predaj. Vsak član mora opraviti vsaj eno predajo, če ekipa šteje 4 člane, pa lahko eden od članov gre dvakrat. Naloga je vredna 100 točk. Točkuje se relativno po zaostanku glede na čas najboljše ekipe v kategoriji, vendar v primeru, da ekipa preseže dvojni čas najhitreje opravljene naloge, se naloga točkuje z nič točkami. Dodeljen čas za opravljanje naloge je 5min. Po 8 min pa se opravljanje naloge prekine in takrat se za vsako neperforirano postajo ekipi prišteje pribitek (1,5min). Končni seštevek opravljanja naloge se ne upošteva pri končnem času celotnega tekmovanja. V primeru, da tekmovalec namerno poškoduje progo, se nalogo točkuje z nič točkami. V primeru goljufije pa kontrolor ekipi dodeli kazenski pribitek 1,5min. <p><b>Možno število točk: 100</b></p></p>
+                            Je namenjena GG/PP/RR/Gr ekipam. Ekipa mora opraviti 5 predaj. Vsak član mora opraviti vsaj eno predajo, če ekipa šteje 4 člane, pa lahko eden od članov gre dvakrat. Naloga je vredna 100 točk. Točkuje se relativno po zaostanku glede na čas najboljše ekipe v kategoriji, vendar v primeru, da ekipa preseže dvojni čas najhitreje opravljene naloge, se naloga točkuje z nič točkami. Dodeljen čas za opravljanje naloge je 5 min. Po 8 min pa se opravljanje naloge prekine in takrat se za vsako neperforirano postajo ekipi prišteje pribitek (1,5 min). Končni seštevek opravljanja naloge se ne upošteva pri končnem času celotnega tekmovanja. V primeru, da tekmovalec namerno poškoduje progo, se nalogo točkuje z nič točkami. V primeru goljufije pa kontrolor ekipi dodeli kazenski pribitek 1,5 min. <p><b>Možno število točk: 100</b></p></p>
                             
                             <h3>Tabela nalog po kategorijah</h3>
                             <table class="table table-bordered">
@@ -286,15 +286,13 @@
                             
                             @break
                         @case(44)
-                            <p>Diskvalifikacije<br>
-                            Ekipa je diskvalificirana, če med orientacijskim pohodom uporablja prevozna sredstva, če prekorači dvakratni čas in čas za naloge ali zaradi kršenja pravil in netaborniškega vedenja.</p>
+                            <p>Ekipa je diskvalificirana, če med orientacijskim pohodom uporablja prevozna sredstva, če prekorači dvakratni čas in čas za naloge ali zaradi kršenja pravil in netaborniškega vedenja.</p>
                             @break
                         @case(45)
-                            <p>Razglasitev in končne določbe<br>
-                            Ekipa, ki zbere največ točk je zmagovalna ekipa. Prvim trem ekipam v posamezni kategoriji se podelijo praktične nagrade, lahko pa tudi za najboljše dosežke pri posameznih nalogah in skupno uvrstitev v točkovanju rodov.</p>
+                            <p>Ekipa, ki zbere največ točk je zmagovalna ekipa. Prvim trem ekipam v posamezni kategoriji se podelijo praktične nagrade, lahko pa tudi za najboljše dosežke pri posameznih nalogah in skupno uvrstitev v točkovanju rodov.</p>
                             @break
                         @case(46)
-                            <p>Pravila so bila zapisana in potrjena iz strani rodove uprave Rodu skalnih taborov, dne 13. 9. 2024</p>
+                            <p>Pravila so bila zapisana in potrjena iz strani rodove uprave Rodu skalnih taborov, dne 8. 9. 2025</p>
                             @break
                         @endswitch
                         @endfor

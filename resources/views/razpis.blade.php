@@ -1,31 +1,31 @@
 @extends('layouts.app')
 
-@section('title', 'ZNOT 2024 - Zimsko nočno orientacijsko tekmovanje')
+@section('title', 'ZNOT 2025 - Zimsko nočno orientacijsko tekmovanje')
 
 @section('content')
 <div class="hero-container">
     <div class="content-wrapper">
         <section class="hero-content">
-            <h1>ZNOT 2024</h1>
-            <p style="color: #4da8da">30.11. – 1.12.2024</p>
-                <a href="https://google.com/maps/place/Osnovna+%C5%A1ola+Zalog/@46.0623958,14.6135001,944m/data=!3m1!1e3!4m6!3m5!1s0x476531b93ceddbe3:0xe7b868d0291e7b22!8m2!3d46.0624051!4d14.6150917!16s%2Fg%2F1hc25yvpv?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 20px;">
+            <h1>ZNOT 2025</h1>
+            <p style="color: #4da8da">6. 12. – 7. 12. 2025</p>
+                <a href="https://www.google.com/maps/place/Osnovna+%C5%A1ola+Gradec/@46.0625689,14.8157987,790m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47653a376b98de79:0x382ae46b985df2de!8m2!3d46.0625689!4d14.8183736!16s%2Fg%2F11dxs9yr7q?entry=ttu&g_ep=EgoyMDI1MTAwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 20px;">
                     <img src="/images/location.svg" alt="Lokacija" class="location">
-                    <h3 class="text-location">Osnovna šola Zalog
+                    <h3 class="text-location">Osnovna šola Gradec
                     </h3>
                 </a>
             <div class="button-container">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLScxIFI6naDXaDlA4T8-yiw7UT1bbcayUfp66t0dd-rEqXXtQQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSecCuyssADh18s3zzXIaI0_kLvA__nqNzVBTYOyZPzf_yNWrQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7ydGCC5qmUXG24IN6zFsMftRsV98u3bmxwO0YNSocQd4A9A/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBI19wySbykniKWRibV31EZq5v9eJTZNPk7WJPaeEICA4xHQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
             </div>
         </section>
 
         <div class="scrollable-content initial-hide">
             <section class="info-section">
                 <h2>OSNOVNE INFORMACIJE</h2>
-                <p><b>Kdaj:</b> 30. 11. – 1. 12. 2024</p>
-                <p>Prijave se odprejo ob 14.00 in zaprejo ob 15.30. Nato sledi zbor ekip. Zaključni zbor ekip bo v soboto okoli 9.00.
+                <p><b>Kdaj:</b> 6. 12. – 7. 12. 2025</p>
+                <p>Prijave se odprejo ob 14.00 in zaprejo ob 15.30. Nato sledi zbor ekip. Zaključni zbor ekip bo v nedeljo okoli 9.00.
                 </p>
-                <p><b>Kje: </b><a href="https://www.google.com/maps/place/Osnovna+%C5%A1ola+Zalog/@46.0623958,14.6135001,944m/data=!3m1!1e3!4m6!3m5!1s0x476531b93ceddbe3:0xe7b868d0291e7b22!8m2!3d46.0624051!4d14.6150917!16s%2Fg%2F1hc25yvpv?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="location-href">Osnovna šola Zalog</a></p>
+                <p><b>Kje: Osnovna šola Gradec</b>/</p>
                 <br>
                 <p>Vsi mladoletni udeleženci morajo ob prijavi predložiti še potrdilo za mladoletne osebe, v primeru da tega ne naredijo se ne bodo smeli udeležiti tekmovanja. Prav tako se nobena ekipa (mladoletni in polnoletni) ne bo smela udeležiti tekmovanja, če pred tekmovanjem ne bo poslana Izjava starešine na mail <b>znot.rst@gmail.com</b>. Netaborniške ekipe morajo prav tako poslati enako izjavo, ki jo podpiše predsednik kluba oz. vodja društva.
                 </p>
@@ -45,8 +45,8 @@
                     <li>Popotniki in popotnice (PP) – od 15 do 20 let</li>
                     <li>Raziskovalci in raziskovalke (RR) ter grče (Gr) – 21 let in več</li>
                 </ul>
-                <p><b>Petčlanske ekipe tekmujejo v ustrezni kategoriji. Starost tekmovalcev se računa po koledarskem letu.</b></p>
-                <p>Število ekip je po kategorijah omejeno na 25 GG (mlajši) ekip, 25 GG (starejši) ekip, 35 PP ekip in 20 RR&GRČE ekip. Na podlagi števila prijavljenih ekip, se lahko te omejitve spremenijo. Spremembe bomo objavili v obvestilih. Vsako dekle ekipi prinese dodatne točke (skladno s pravili).</p>
+                <p><b>Prijavljene ekipe tekmujejo v ustrezni kategoriji. Starost tekmovalcev se računa po koledarskem letu.</b></p>
+                <p>Število ekip je po kategorijah omejeno na 25 GG (mlajši) ekip, 25 GG (starejši) ekip, 30 PP ekip in 20 RR&GRČE ekip. Na podlagi števila prijavljenih ekip, se lahko te omejitve spremenijo. Spremembe bomo objavili v obvestilih. Vsako dekle ekipi prinese dodatne točke (skladno s pravili).</p>
             </section>
 
             <section class="info-section">
@@ -58,21 +58,21 @@
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSecCuyssADh18s3zzXIaI0_kLvA__nqNzVBTYOyZPzf_yNWrQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
                 </div> -->
 
-                <p>Rok plačila štartnine in s tem prijav je <b>ponedeljek 18. november 2024</b> do polnoči. Prijava ekipe je veljavna šele ob plačilu štartnine in ob poslanem potrdilu plačila na <b>znot.rst@gmail.com</b>, iz katerega je razvidno <b>ime ekipe, rod in datum plačila</b> . Ob nejasnem/nepravilnem plačilu vrnemo štartnino in obdržimo znesek za stroške nakazila. Štartnina ob prijavi do vključno <b>ponedeljek 4. novembra 2024</b>  do polnoči znaša <b>55€</b> (57€ ob izposoji čipa) na ekipo. Po <b>4. novembru 2024</b> se štartnina zviša na <b>75€</b> (77€ ob izposoji čipa) na ekipo.
+                <p>Rok plačila štartnine in s tem prijav je <b>ponedeljek 24. november 2025</b> do polnoči. Prijava ekipe je veljavna šele ob plačilu štartnine in ob poslanem potrdilu plačila na <b>znot.rst@gmail.com</b>, iz katerega je razvidno <b>ime ekipe, rod in datum plačila</b>. Ob nejasnem/nepravilnem plačilu vrnemo štartnino. Štartnina ob prijavi do vključno <b>ponedeljek 17. novembra 2025</b> do polnoči znaša <b>55€</b> (57€ ob izposoji čipa) na ekipo. Po <b>17. novembru 2025</b> se štartnina zviša na <b>75€</b> (77€ ob izposoji čipa) na ekipo.
                 </p>
 
                 <p>Cena se obračuna glede na datum plačila in NE datum izpolnjenega obrazca oz. je nižja cena veljavna le pri plačilu znotraj roka cenejših prijav. V primeru izposoje čipa od organizatorja, mora ekipa ob plačilu štartnine (v primeru cenejših in dražjih prijav) plačati dodatna 2€.
                 </p>
 
                 
-                <p>Odjave so možne do vključno petka 22. novembra 2024. Do tega datuma vračamo štartnino in obdržimo znesek za stroške nakazila. Pri odjavi po <b>22. novembru 2024</b> štartnine ne vračamo (prav tako ne plačila za izposojo čipa).
+                <p>Odjave so možne do vključno ponedeljka 24. novembra 2025. Do tega datuma vračamo štartnino. Pri odjavi po <b>24. novembru 2025</b> štartnine ne vračamo (prav tako ne plačila za izposojo čipa).
                 </p>
 
                 <p>Na dan ZNOT-a se ob prijavi ekipe plača kavcija za čip v vrednosti 40€, katero se vrne ekipi na cilju ob vrnitvi čipa.
                 </p>
 
                 <div class="button-container" style="justify-content:center;">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScxIFI6naDXaDlA4T8-yiw7UT1bbcayUfp66t0dd-rEqXXtQQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7ydGCC5qmUXG24IN6zFsMftRsV98u3bmxwO0YNSocQd4A9A/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
                 </div>
                 <br>
 
@@ -87,7 +87,7 @@
 
                 <p>namen nakazila: <b>ime ekipe + ime rodu</b> 
                 </p>
-                <p> uporabite sklic: <b>1111-2024</b>
+                <p> uporabite sklic: <b>1111-2025</b>
                 </p>
 
                 <p> prejemnik: <b>RST Domžale, Kopališka cesta 4, 1230 Domžale</b> 
@@ -105,7 +105,7 @@
                 <p>Za vodnike, ki na ZNOT pridejo kot spremljevalci članov prijavnine ni. Za vse ostale znaša 7€. 
                 </p>
                 <div class="button-container" style="justify-content:center;">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSecCuyssADh18s3zzXIaI0_kLvA__nqNzVBTYOyZPzf_yNWrQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBI19wySbykniKWRibV31EZq5v9eJTZNPk7WJPaeEICA4xHQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
                 </div>
 
             </section>
@@ -114,5 +114,3 @@
 </div>
 
 @endsection
-
-
