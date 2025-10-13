@@ -5,13 +5,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const heroContent = document.querySelector('.hero-content');
     const isHomePage = document.body.classList.contains('home-page');
 
-    // Detekcija iOS naprav
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    
-    if (isIOS && heroContainer) {
-        heroContainer.style.backgroundAttachment = 'scroll';
-    }
-
     function handleScroll() {
         let scrollPosition = window.scrollY;
         let navbarOpacity = Math.min(scrollPosition / 300, 0.8);
@@ -23,11 +16,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         
         if (heroContainer) {
             heroContainer.style.setProperty('--blur', `${heroBlur}px`);
-            
-            // Za iOS naprave, ročno premikaj ozadje
-            if (isIOS) {
-                heroContainer.style.backgroundPosition = `center ${scrollPosition * 0.5}px`;
-            }
         }
 
         if (isHomePage && scrollableContent && heroContent) {
@@ -43,10 +31,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     window.addEventListener('scroll', handleScroll);
     
     if (isHomePage) {
+        // Dodajte razred za začetno skrivanje
         if (scrollableContent) {
             scrollableContent.classList.add('initial-hide');
         }
         
+        // Zakasnitev prvega izvajanja handleScroll
         setTimeout(() => {
             handleScroll();
         }, 100);
