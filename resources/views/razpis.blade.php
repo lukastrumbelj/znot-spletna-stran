@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="hero-container">
+    <div class="hero-background"></div>
     <div class="content-wrapper">
         <section class="hero-content">
             <h1>ZNOT 2025</h1>
