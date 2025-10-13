@@ -1,9 +1,18 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const navbar = document.querySelector('.navbar');
     const heroContainer = document.querySelector('.hero-container');
+    const heroBackground = document.querySelector('.hero-background');
     const scrollableContent = document.querySelector('.scrollable-content');
     const heroContent = document.querySelector('.hero-content');
     const isHomePage = document.body.classList.contains('home-page');
+    
+    // Detekcija iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    
+    if (isIOS && heroBackground) {
+        // Za iOS nastavi višino na točno višino viewporta
+        heroBackground.style.height = window.innerHeight + 'px';
+    }
 
     function handleScroll() {
         let scrollPosition = window.scrollY;
@@ -30,13 +39,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     window.addEventListener('scroll', handleScroll);
     
+    // Posodobi višino ob spremembah orientacije na iOS
+    if (isIOS) {
+        window.addEventListener('resize', () => {
+            if (heroBackground) {
+                heroBackground.style.height = window.innerHeight + 'px';
+            }
+        });
+    }
+    
     if (isHomePage) {
-        // Dodajte razred za začetno skrivanje
         if (scrollableContent) {
             scrollableContent.classList.add('initial-hide');
         }
         
-        // Zakasnitev prvega izvajanja handleScroll
         setTimeout(() => {
             handleScroll();
         }, 100);
