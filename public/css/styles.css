@@ -142,26 +142,46 @@ body, html {
 
 .hero-container {
     min-height: 100vh;
-    background-image: url('../images/homepage/ozadje.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     position: relative;
     overflow-y: auto;
 }
 
+/* Ozadje kot ločen layer */
+.hero-container::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background-image: url('../images/homepage/ozadje.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+/* Overlay za zamegljenje */
 .hero-container::before {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(var(--blur, 0px));
     transition: backdrop-filter 0.3s ease;
     z-index: 1;
 }
+
+/* Popravek za iOS naprave */
+@supports (-webkit-touch-callout: none) {
+    .hero-container::after,
+    .hero-container::before {
+        position: absolute;
+    }
+}
+
 .hero-container.blurred::before {
     backdrop-filter: blur(15px);
 }
@@ -509,25 +529,4 @@ th, td{
 }
 
 
-
-
-@supports (-webkit-touch-callout: none) {
-    /* To cilja samo iOS Safari */
-    .hero-container {
-        background-attachment: scroll;
-        position: relative;
-    }
-    
-    .hero-container::before {
-        position: absolute; /* Spremeni iz fixed v absolute samo za iOS */
-    }
-}
-
-/* Dodatni iOS popravek */
-@media screen and (-webkit-min-device-pixel-ratio: 2) {
-    .hero-container {
-        min-height: 100vh;
-        background-size: cover;
-    }
-}
 
