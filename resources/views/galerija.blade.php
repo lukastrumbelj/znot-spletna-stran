@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'ZNOT 2024 - Galerija')
+@section('title', 'ZNOT - Galerija')
 
 @section('content')
 <div class="hero-container blurred">

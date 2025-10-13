@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'ZNOT 2025 - Zimsko nočno orientacijsko tekmovanje')
+@section('title', 'ZNOT - Zimsko nočno orientacijsko tekmovanje')
 
 @section('content')
 <div class="hero-container">
