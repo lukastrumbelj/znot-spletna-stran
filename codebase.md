@@ -312,11 +312,12 @@ indent_size = 4
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'home');
-Route::view('/razpis', 'razpis');
-Route::view('/pravila', 'pravila');
-Route::view('/rezultati', 'rezultati');
-Route::view('/galerija', 'galerija');
+Route::get('/', function () {
+    return view('razpis');
+})->name('home');
+Route::view('/pravila', 'pravila')->name('pravila');
+Route::view('/rezultati', 'rezultati')->name('rezultati');
+Route::view('/galerija', 'galerija')->name('galerija');
 
 
 ```
@@ -399,6 +400,17 @@ require __DIR__.'/../vendor/autoload.php';
 
 ```
 
+# database/database.sqlite
+
+This is a binary file of the type: Binary
+
+# database/.gitignore
+
+```
+*.sqlite*
+
+```
+
 # tests/TestCase.php
 
 ```php
@@ -412,52 +424,6 @@ abstract class TestCase extends BaseTestCase
 {
     //
 }
-
-```
-
-# database/database.sqlite
-
-This is a binary file of the type: Binary
-
-# database/.gitignore
-
-```
-*.sqlite*
-
-```
-
-# bootstrap/providers.php
-
-```php
-<?php
-
-return [
-    App\Providers\AppServiceProvider::class,
-];
-
-```
-
-# bootstrap/app.php
-
-```php
-<?php
-
-use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Configuration\Exceptions;
-use Illuminate\Foundation\Configuration\Middleware;
-
-return Application::configure(basePath: dirname(__DIR__))
-    ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        commands: __DIR__.'/../routes/console.php',
-        health: '/up',
-    )
-    ->withMiddleware(function (Middleware $middleware) {
-        //
-    })
-    ->withExceptions(function (Exceptions $exceptions) {
-        //
-    })->create();
 
 ```
 
@@ -1732,6 +1698,41 @@ return [
     ],
 
 ];
+
+```
+
+# bootstrap/providers.php
+
+```php
+<?php
+
+return [
+    App\Providers\AppServiceProvider::class,
+];
+
+```
+
+# bootstrap/app.php
+
+```php
+<?php
+
+use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
+
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        commands: __DIR__.'/../routes/console.php',
+        health: '/up',
+    )
+    ->withMiddleware(function (Middleware $middleware) {
+        //
+    })
+    ->withExceptions(function (Exceptions $exceptions) {
+        //
+    })->create();
 
 ```
 
@@ -3691,6 +3692,905 @@ return [
 #62 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
 #63 {main}
 "} 
+[2024-09-17 15:46:49] local.ERROR: View [header] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) {"exception":"[object] (Illuminate\\View\\ViewException(code: 0): View [header] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(60): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(InvalidArgumentException), 1)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#58 {main}
+
+[previous exception] [object] (InvalidArgumentException(code: 0): View [header] not found. at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php(79): Illuminate\\View\\FileViewFinder->findInPaths('header', Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Factory.php(151): Illuminate\\View\\FileViewFinder->find('header')
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/storage/framework/views/cff17d875664268deabf63118a68100d.php(51): Illuminate\\View\\Factory->make('header', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/Applications/X...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/Applications/X...', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#59 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#60 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#61 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#62 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#63 {main}
+"} 
+[2024-09-17 15:46:51] local.ERROR: View [header] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) {"exception":"[object] (Illuminate\\View\\ViewException(code: 0): View [header] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(60): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(InvalidArgumentException), 1)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#58 {main}
+
+[previous exception] [object] (InvalidArgumentException(code: 0): View [header] not found. at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php(79): Illuminate\\View\\FileViewFinder->findInPaths('header', Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Factory.php(151): Illuminate\\View\\FileViewFinder->find('header')
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/storage/framework/views/cff17d875664268deabf63118a68100d.php(51): Illuminate\\View\\Factory->make('header', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/Applications/X...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/Applications/X...', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#59 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#60 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#61 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#62 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#63 {main}
+"} 
+[2024-09-17 15:46:52] local.ERROR: View [header] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) {"exception":"[object] (Illuminate\\View\\ViewException(code: 0): View [header] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(60): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(InvalidArgumentException), 1)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#58 {main}
+
+[previous exception] [object] (InvalidArgumentException(code: 0): View [header] not found. at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php(79): Illuminate\\View\\FileViewFinder->findInPaths('header', Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Factory.php(151): Illuminate\\View\\FileViewFinder->find('header')
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/storage/framework/views/cff17d875664268deabf63118a68100d.php(51): Illuminate\\View\\Factory->make('header', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/Applications/X...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/Applications/X...', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#59 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#60 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#61 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#62 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#63 {main}
+"} 
+[2024-09-17 15:48:40] local.ERROR: View [app] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) {"exception":"[object] (Illuminate\\View\\ViewException(code: 0): View [app] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(60): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(InvalidArgumentException), 1)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#58 {main}
+
+[previous exception] [object] (InvalidArgumentException(code: 0): View [app] not found. at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php(79): Illuminate\\View\\FileViewFinder->findInPaths('app', Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Factory.php(151): Illuminate\\View\\FileViewFinder->find('app')
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/storage/framework/views/cff17d875664268deabf63118a68100d.php(51): Illuminate\\View\\Factory->make('app', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/Applications/X...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/Applications/X...', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#59 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#60 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#61 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#62 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#63 {main}
+"} 
+[2024-09-17 15:48:41] local.ERROR: View [app] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) {"exception":"[object] (Illuminate\\View\\ViewException(code: 0): View [app] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(60): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(InvalidArgumentException), 1)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#58 {main}
+
+[previous exception] [object] (InvalidArgumentException(code: 0): View [app] not found. at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php(79): Illuminate\\View\\FileViewFinder->findInPaths('app', Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Factory.php(151): Illuminate\\View\\FileViewFinder->find('app')
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/storage/framework/views/cff17d875664268deabf63118a68100d.php(51): Illuminate\\View\\Factory->make('app', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/Applications/X...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/Applications/X...', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#59 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#60 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#61 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#62 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#63 {main}
+"} 
+[2024-09-17 15:48:42] local.ERROR: View [app] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) {"exception":"[object] (Illuminate\\View\\ViewException(code: 0): View [app] not found. (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php) at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(60): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(InvalidArgumentException), 1)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#58 {main}
+
+[previous exception] [object] (InvalidArgumentException(code: 0): View [app] not found. at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:139)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php(79): Illuminate\\View\\FileViewFinder->findInPaths('app', Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Factory.php(151): Illuminate\\View\\FileViewFinder->find('app')
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/storage/framework/views/cff17d875664268deabf63118a68100d.php(51): Illuminate\\View\\Factory->make('app', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/Applications/X...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/Applications/X...', Array)
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('home', Array, 200, Array)
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'home', data: Array, status: 200, headers: Array)
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#59 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#60 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#61 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#62 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#63 {main}
+"} 
+[2024-09-18 17:02:22] local.ERROR: syntax error, unexpected end of file (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/pravila.blade.php) {"exception":"[object] (Illuminate\\View\\ViewException(code: 0): syntax error, unexpected end of file (View: /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/pravila.blade.php) at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/storage/framework/views/4d40881e1cb4ab3a431293697e86f2a9.php:281)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(60): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(ParseError), 1)
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('pravila', Array, 200, Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'pravila', data: Array, status: 200, headers: Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#58 {main}
+
+[previous exception] [object] (ParseError(code: 0): syntax error, unexpected end of file at /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/storage/framework/views/4d40881e1cb4ab3a431293697e86f2a9.php:281)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#1 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/Applications/X...', Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(74): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/Applications/X...', Array)
+#3 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\\View\\Engines\\CompilerEngine->get('/Applications/X...', Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\\View\\View->getContents()
+#5 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\\View\\View->renderContents()
+#6 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(70): Illuminate\\View\\View->render()
+#7 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#8 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#9 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 200, Array)
+#10 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(41): Illuminate\\Routing\\ResponseFactory->view('pravila', Array, 200, Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ViewController.php(58): Illuminate\\Routing\\ViewController->__invoke(view: 'pravila', data: Array, status: 200, headers: Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\ViewController->callAction('__invoke', Array)
+#13 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(262): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Routing\\ViewController), '__invoke')
+#14 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Route.php(208): Illuminate\\Routing\\Route->runController()
+#15 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#16 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#17 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#18 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#19 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#25 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#32 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#33 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#34 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#35 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#36 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#55 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#56 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#57 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/public/index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#58 /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Applications/X...')
+#59 {main}
+"} 
 
 ```
 
@@ -3702,13 +4602,18 @@ return [
 
 ```
 
-# storage/app/.gitignore
+# storage/framework/.gitignore
 
 ```
-*
-!private/
-!public/
-!.gitignore
+compiled.php
+config.php
+down
+events.scanned.php
+maintenance.php
+routes.php
+routes.scanned.php
+schedule-*
+services.json
 
 ```
 
@@ -3895,11 +4800,21 @@ return [
 ```php
 @extends('layouts.app')
 
-@section('title', 'Rezultati')
+@section('title', 'ZNOT 2024 - Rezultati')
 
 @section('content')
-    <h1>Rezultati</h1>
-    <p>Tukaj bodo prikazani rezultati.</p>
+<div class="hero-container blurred">
+    <div class="content-wrapper">
+        <div class="scrollable-content">
+            <section class="info-section margin-top">
+                <h2>Rezultati tekmovanja</h2>                
+                <div class="button-container" style="justify-content:center;">
+                    <a href="https://docs.google.com/spreadsheets/d/1_ptyF0Ml52Veu86LspUajc31aBNp4dKAy1EzNAYc7Gw/edit?gid=605383095#gid=605383095" class="btn btn-custom btn-primary" target="_blank">Poglej rezultate</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
 @endsection
 ```
 
@@ -3908,11 +4823,119 @@ return [
 ```php
 @extends('layouts.app')
 
-@section('title', 'Razpis')
+@section('title', 'ZNOT 2025 - Zimsko nočno orientacijsko tekmovanje')
 
 @section('content')
-    <h1>Razpis</h1>
-    <p>Tukaj so informacije o našem razpisu.</p>
+<div class="hero-container">
+    <div class="content-wrapper">
+        <section class="hero-content">
+            <h1>ZNOT 2025</h1>
+            <p style="color: #4da8da">6. 12. – 7. 12. 2025</p>
+                <a href="https://www.google.com/maps/place/Osnovna+%C5%A1ola+Gradec/@46.0625689,14.8157987,790m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47653a376b98de79:0x382ae46b985df2de!8m2!3d46.0625689!4d14.8183736!16s%2Fg%2F11dxs9yr7q?entry=ttu&g_ep=EgoyMDI1MTAwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 20px;">
+                    <img src="/images/location.svg" alt="Lokacija" class="location">
+                    <h3 class="text-location">Osnovna šola Gradec
+                    </h3>
+                </a>
+            <div class="button-container">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7ydGCC5qmUXG24IN6zFsMftRsV98u3bmxwO0YNSocQd4A9A/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBI19wySbykniKWRibV31EZq5v9eJTZNPk7WJPaeEICA4xHQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+            </div>
+        </section>
+
+        <div class="scrollable-content initial-hide">
+            <section class="info-section">
+                <h2>OSNOVNE INFORMACIJE</h2>
+                <p><b>Kdaj:</b> 6. 12. – 7. 12. 2025</p>
+                <p>Prijave se odprejo ob 14.00 in zaprejo ob 15.30. Nato sledi zbor ekip. Zaključni zbor ekip bo v nedeljo okoli 9.00.
+                </p>
+                <p><b>Kje: Osnovna šola Gradec</b>/</p>
+                <br>
+                <p>Vsi mladoletni udeleženci morajo ob prijavi predložiti še potrdilo za mladoletne osebe, v primeru da tega ne naredijo se ne bodo smeli udeležiti tekmovanja. Prav tako se nobena ekipa (mladoletni in polnoletni) ne bo smela udeležiti tekmovanja, če pred tekmovanjem ne bo poslana Izjava starešine na mail <b>znot.rst@gmail.com</b>. Netaborniške ekipe morajo prav tako poslati enako izjavo, ki jo podpiše predsednik kluba oz. vodja društva.
+                </p>
+                <div class="button-container" style="justify-content:center;">
+                    <a href="{{ asset('files/izjava-staresine.pdf') }}" class="btn btn-custom btn-primary" target="_blank">Izjava starešine</a>
+                    <a href="{{ asset('files/potrdilo-za-mladoletne.pdf') }}" class="btn btn-custom btn-primary" target="_blank">Potrdilo za mladoletne</a>
+                </div>
+
+
+            </section>
+
+            <section class="info-section">
+                <h2>STAROSTNE KATEGORIJE</h2>
+                <ul>
+                    <li>Mlajši gozdovniki in gozdovnice (GG) – od 11 do 12 let</li>
+                    <li>Starejši gozdovniki in gozdovnice (GG) – od 13 do 14 let</li>
+                    <li>Popotniki in popotnice (PP) – od 15 do 20 let</li>
+                    <li>Raziskovalci in raziskovalke (RR) ter grče (Gr) – 21 let in več</li>
+                </ul>
+                <p><b>Prijavljene ekipe tekmujejo v ustrezni kategoriji. Starost tekmovalcev se računa po koledarskem letu.</b></p>
+                <p>Število ekip je po kategorijah omejeno na 25 GG (mlajši) ekip, 25 GG (starejši) ekip, 30 PP ekip in 20 RR&GRČE ekip. Na podlagi števila prijavljenih ekip, se lahko te omejitve spremenijo. Spremembe bomo objavili v obvestilih. Vsako dekle ekipi prinese dodatne točke (skladno s pravili).</p>
+            </section>
+
+            <section class="info-section">
+                <h2>PRIJAVE</h2>
+                <p>Ob prijavi ekipa navede: starostno kategorijo, v kateri tekmuje, ime, priimek, elektronski naslov in telefonsko številko vodje ekipe, prehranske posebnosti.</p>
+                <p>Na tekmovanju se uporablja elektronski sistem perforiranja (SportIdent), zato naj ekipe, ki imajo svoje čipe, to navedejo ob prijavi ter napišejo njegovo številko. <b>Vse ostale ekipe, ki si bodo čip izposodile od organizatorja, morajo pri prijavi oz. pri plačilu štartnine plačati dodatna 2€ za izposojo.</b></p>
+                <!-- <div class="button-container">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScxIFI6naDXaDlA4T8-yiw7UT1bbcayUfp66t0dd-rEqXXtQQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSecCuyssADh18s3zzXIaI0_kLvA__nqNzVBTYOyZPzf_yNWrQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+                </div> -->
+
+                <p>Rok plačila štartnine in s tem prijav je <b>ponedeljek 24. november 2025</b> do polnoči. Prijava ekipe je veljavna šele ob plačilu štartnine in ob poslanem potrdilu plačila na <b>znot.rst@gmail.com</b>, iz katerega je razvidno <b>ime ekipe, rod in datum plačila</b>. Ob nejasnem/nepravilnem plačilu vrnemo štartnino. Štartnina ob prijavi do vključno <b>ponedeljek 17. novembra 2025</b> do polnoči znaša <b>55€</b> (57€ ob izposoji čipa) na ekipo. Po <b>17. novembru 2025</b> se štartnina zviša na <b>75€</b> (77€ ob izposoji čipa) na ekipo.
+                </p>
+
+                <p>Cena se obračuna glede na datum plačila in NE datum izpolnjenega obrazca oz. je nižja cena veljavna le pri plačilu znotraj roka cenejših prijav. V primeru izposoje čipa od organizatorja, mora ekipa ob plačilu štartnine (v primeru cenejših in dražjih prijav) plačati dodatna 2€.
+                </p>
+
+                
+                <p>Odjave so možne do vključno ponedeljka 24. novembra 2025. Do tega datuma vračamo štartnino. Pri odjavi po <b>24. novembru 2025</b> štartnine ne vračamo (prav tako ne plačila za izposojo čipa).
+                </p>
+
+                <p>Na dan ZNOT-a se ob prijavi ekipe plača kavcija za čip v vrednosti 40€, katero se vrne ekipi na cilju ob vrnitvi čipa.
+                </p>
+
+                <div class="button-container" style="justify-content:center;">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7ydGCC5qmUXG24IN6zFsMftRsV98u3bmxwO0YNSocQd4A9A/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                </div>
+                <br>
+
+
+
+                <h4>Štartnino lahko poravnate na:</h4>
+                <p>transakcijskem računu: <b>SI56-0230-0001-2196-019</b> odprtem pri Novi ljubljanski banki d.d.
+                </p>
+
+                <p>BIC banke: <b>LJBASI2X</b>
+                </p>
+
+                <p>namen nakazila: <b>ime ekipe + ime rodu</b> 
+                </p>
+                <p> uporabite sklic: <b>1111-2025</b>
+                </p>
+
+                <p> prejemnik: <b>RST Domžale, Kopališka cesta 4, 1230 Domžale</b> 
+                </p>
+
+                <p>(Upoštevali bomo samo tista plačila, za katera se bo iz namena plačila nedvoumno videlo za katero ekipo je namenjeno).
+                </p>
+
+                <p>Plačilo štartnin in prijave na dan tekmovanja niso možne. Pridržujemo si pravico, da rok prijav skrajšamo ob zapolnitvi prostih mest!
+                </p>
+            </section>
+
+            <section class="info-section">
+                <h2>SOLO KATEGORIJA</h2>
+                <p>Za vodnike, ki na ZNOT pridejo kot spremljevalci članov prijavnine ni. Za vse ostale znaša 7€. 
+                </p>
+                <div class="button-container" style="justify-content:center;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBI19wySbykniKWRibV31EZq5v9eJTZNPk7WJPaeEICA4xHQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+
 @endsection
 ```
 
@@ -3921,117 +4944,447 @@ return [
 ```php
 @extends('layouts.app')
 
-@section('title', 'Pravila')
+@section('title', 'ZNOT 2025 - Pravila')
 
 @section('content')
-    <h1>Pravila</h1>
-    <p>Tukaj so navedena pravila našega projekta.</p>
+<div class="hero-container blurred">
+    <div class="content-wrapper">
+
+        <div class="scrollable-content">
+            <section class="info-section margin-top">
+                <h2>Pravila Zimskega nočnega orientacijskega tekmovanja</h2>
+                
+                @for ($i = 1; $i <= 46; $i++)
+                    @if($i==18)
+                    <h4>Pogoji tekmovanja</h4>
+                    @endif
+
+
+                    @if($i==31)
+                    <h4>Opis nalog in točkovanje
+                    </h4>
+                    @endif
+
+
+                    @if($i==44)
+                    <h4>Diskvalifikacije
+                    </h4>
+                    @endif
+
+                    @if($i==45)
+                    <h4>Razglasitev in končne določbe
+                    </h4>
+                    @endif
+
+
+
+
+                    <p><strong>{{ $i }}. člen</strong></p>
+                    @switch($i)
+                        @case(1)
+                            <p>Zimsko nočno orientacijsko tekmovanje (ZNOT) organizira Rod skalnih taborov iz Domžal. Organizirano je vsako leto. Tekmovanje je enodnevno, poteka v noči iz sobote na nedeljo in vsebuje orientacijski pohod, naloge iz taborništva, orientacije in šaljive panoge.</p>
+                            @break
+                        @case(2)
+                            <p>Vse ekipe, ki tekmujejo, imajo možnost prenočitve.</p>
+                            @break
+                        @case(3)
+                            <p>Tekmovalci tekmujejo v štirih kategorijah:</p>
+                            <ul>
+                                <li>100 – Mlajši gozdovniki in gozdovnice (GG) – od 11 do 12 let</li>
+                                <li>200 – Starejši gozdovniki in gozdovnice (GG) – od 13 do 14 let</li>
+                                <li>300 – Popotniki in popotnice (PP) – od 15 do 20 let</li>
+                                <li>500 – Raziskovalci ter raziskovalke (RR) ter grče (Gr) – 21 let in več</li>
+                            </ul>
+                            @break
+                        @case(4)
+                            <p>Ekipe so lahko mešane, za vsako dekle se dobi bonus točke.</p>
+                            @break
+                        @case(5)
+                            <p>Ekipa šteje 5 članov. Ekipa s 4 člani lahko tekmuje brez olajšav. Ekipa s 3 ali manj člani tekmuje izven konkurence. Ekipa s 6 in več tekmovalci tekmuje prav tako izven konkurence, a je lahko eden od članov ekipe vodnik, ki ekipo spremlja na poti (za kategorijo mlajši GG). Tudi v tem primeru, ekipa tekmuje izven konkurence.</p>
+                            @break
+                        @case(6)
+                            <p>V ekipi lahko samo en član odstopa od starostne kategorije v kateri tekmuje, vendar ne več kot za 1 leto. Starost tekmovalcev organizator lahko preveri s pregledom osebnih dokumentov tekom tekmovanja. Starost tekmovalcev se računa po koledarskem letu.</p>
+                            @break
+                        @case(7)
+                            <p>Vsi tekmovalci tekmujejo na lastno odgovornost.</p>
+                            @break
+                        @case(8)
+                            <p>Vodstvo tekmovanja vsaj mesec dni pred tekmovanjem objavi razpis tekmovanja. Lokacijo tekmovanja se lahko objavi kasneje, vendar ne kasneje kot 14 dni pred tekmovanjem.</p>
+                            @break
+                        @case(9)
+                            <p>V razpisu ali na spletni strani vsaj 3 dni pred tekmovanjem organizator obvesti ekipe, na katerem listu DTK25 bo potekalo tekmovanje.</p>
+                            @break
+                        @case(10)
+                            <p>Tekmovanje poteka v skladu s taborniškimi zakoni. Organizator si pridržuje pravico, da kršitelja diskvalificira. Nobena ekipa (mladoletni in polnoletni) se ne bo smela udeležiti tekmovanja, če pred tekmovanjem ne bo poslana izjava starešine na mail naveden v razpisu.</p>
+                            @break
+                        @case(11)
+                            <p>Ekipe štartnino nakažejo že pred tekmovanjem na transakcijski račun organizatorja, ki je objavljen v razpisu tekmovanja. Po izteku roka prijav ne sprejemamo več prijav ekip. Plačilo štartnine oziroma prijave na dan tekmovanja niso mogoče.</p>
+                            @break
+                        @case(12)
+                            <p>V primeru odpovedi ali preložitve tekmovanja iz različnih razlogov mora organizator o tem obvestiti vse prijavljene ekipe vsaj 4 dni pred tekmovanjem. Štartnine se ob odpovedi prijavljenim ekipam v celoti vrnejo.</p>
+                            @break
+                        @case(13)
+                            <p>Ekipa ima možnost pritožbe zaradi nepravilnega sojenja ali drugega vzroka 45 minut po neuradni razglasitvi rezultatov.</p>
+                            @break
+                        @case(14)
+                            <p>Uradna razglasitev rezultatov je v nedeljo zjutraj.</p>
+                            @break
+                        @case(15)
+                            <p>Rezultati tekmovanja in slike so v roku enega tedna objavljeni na spletni strani tekmovanja: http://znot.rst-domzale.si.</p>
+                            @break
+                        @case(16)
+                            <p>Za tiste, ki prespijo v telovadnici oz. dvorani so obvezni copati.</p>
+                            @break
+                        @case(17)
+                            <p>Vsak udeleženec ZNOT-a prejme našitek tekmovanja.</p>
+                            @break
+                        @case(18)
+                            <p>Štartna številka vsake ekipe se izžreba večer prej na zadnjem sestanku ZNOT ekipe, ob prijavi ekipe ali na sestanku vodij ekip po uvodnem zboru.</p>
+                            @break
+                        @case(19)
+                            <p>Na vse kontrolne točke morajo priti vsi člani ekipe.</p>
+                            @break
+                        @case(20)
+                            <p>Med orientacijskim pohodom tekmovalci ne smejo uporabljati prevoznih sredstev.</p>
+                            @break
+                        @case(21)
+                            <p>Ekipa mora kontrolne točke (KT) na progi pobirati v pravilnem vrstnem redu. V nasprotnem primeru se ji KT, po katero se je ekipa vrnila, ne šteje.</p>
+                            @break
+                        @case(22)
+                            <p>Proga poteka na državni topografski karti 1:25.000. Ekipa prejme vsaj 1 barvni izvod karte ob štartu na progo.</p>
+                            @break
+                        @case(23)
+                            <p>Del proge lahko poteka na karti večjega merila (npr. karta za orientacijski tek). O tem so obveščene vodje ekip na sestanku vodij ekip po končanem uvodnem zboru.</p>
+                            @break
+                        @case(24)
+                            <p>Ekipa naloge rešuje skupno, razen v primerih, ko je posebej določeno drugače.</p>
+                            @break
+                        @case(25)
+                            <p>Ekipa štarta in rešuje naloge ob času, ki ga določi organizator.</p>
+                            @break
+                        @case(26)
+                            <p>Topografski test se rešuje pred odhodom na orientacijski pohod.</p>
+                            @break
+                        @case(27)
+                            <p>Ekipa je diskvalificirana, če prekorači dvakratni čas časovnice + čas, ki ga ima ekipa na voljo za reševanje nalog.</p>
+                            @break
+                        @case(28)
+                            <p>Na tekmovanju se uporablja elektronski način potrjevanja prisotnosti na KT (SPORTIDENT). Ekipe brez čipov si ob prijavi sposodijo čip, ki ga priskrbi organizator (doplačilo 2€ ob plačilu štartnine). V primeru, da ekipa čip izgubi, mora poravnati račun za izgubljen čip v višini 40€ (velja za vse čipe, ki jih tekmovalci prejmejo in uporabljajo tekom tekmovanja). Na dan ZNOT-a se ob prijavi ekipe plača kavcija za čip v vrednosti 40€, katero se vrne ekipi na cilju ob vrnitvi čipa.</p>
+                            @break
+                        @case(29)
+                            <p>V primeru, da SPORTIDENT postaja na KT odpove, ekipa lahko dokaže, svojo prisotnost na KT s pomočjo pametnih naprav(slika).</p>
+                            @break
+                        @case(30)
+                            <p>V kolikor mora ekipa na KT zaradi gneče čakati na začetek opravljanja naloge, se ji upošteva mrtvi čas.</p>
+                            @break
+                        @case(31)
+                            <p><span class="kt-title">Topografski test</span><br>
+                            Vsak član ekipe posamično rešuje test s topografsko vsebino. Možno je doseči 12 točk na test. Čas reševanja je 5 minut. V primeru, da ekipa šteje 4 člane, lahko najhitrejši član reši tudi peti test. Če tekmovalec na testu ne označi številke izseka, s katerim si pomaga pri reševanju testa, ta za to nalogo avtomatično prejme nič točk.<p><b>Možno število točk: 60</b></p></p>
+                            @break
+                        @case(32)
+                            <p><span class="kt-title">Bonus točke</span><br>
+                            Za vsako dekle ekipa prejme nekaj bonus točk. V kategoriji PP in RR/Grče za eno dekle v ekipi 20 točk, za dve dekleti 40 točk, za tri dekleta 60 točk za štiri dekleta 80 točk in za pet deklet 100 točk. <p><b>Možno število točk: 100</b></p></p>
+                            @break
+                        @case(33)
+                            <p><span class="kt-title">Orientacijski pohod</span><br>
+                            Vse KT so označene z zastavicami, na njih je SPORTIDENT postaja in „kresnička". Na živih KT lahko kontrolor pripiše število doseženih točk na KT na štartni list ekipe. Časovnica je določena na začetku tekmovanja. Za vsako minuto zamude dobi ekipa 2 negativni točki. Ekipe morajo najti čim več kontrolnih točk. Vsaka šteje 70 točk. Število kontrolnih točk za posamezno kategorijo določi traser glede na težavnost terena in orientacije. O številu KT so obveščene vodje ekip na sestanku vodij ekip, na dan tekmovanja. Ena izmed KT je »KT na vrisani poti«. Na vseh živih KT (razen na KT na vrisani poti) je določen čas za opravljanje naloge, ki se upošteva pri časovnici.<p><b>Možno število točk: GG 560+ PP 700+ RR/Gr 840+</b></p> </p>
+                            @break
+                        @case(34)
+                            <p><span class="kt-title">Prihod pod kotom</span><br>
+                            Ekipa mora v ravni vrsti priti na KT pod določenim kotom, ki je napisan na štartnem listu. Odstopanje mora biti manjše od 10 stopinj. Za odstopanje od 5 do 10 stopinj ekipa dobi polovično število točk. Kot pod katerim mora ekipa priti na KT je napisan na štartnem listu. Primer: Če je kot 90 st., mora ekipa priti na KT z vzhoda. <p><b>Možno število točk: 30</b></p></p>
+                            @break
+                        @case(35)
+                            <p><span class="kt-title">Prehod minskega polja</span><br>
+                            Je namenjen le PP in RR/Gr ekipam. Ekipa prehodi minsko polje s petimi razdaljami in petimi koti. Za odstopanje v krogu do 1 m pri posamezni točki, ekipa lahko nadaljuje z opravljanjem naloge. Če odstopa več kot za 1 m pa ekipa ne sme nadaljevati. Vsaka pravilno določena točka prinese ekipi 20 točk. Čas za prehod je 10 minut in je vštet v časovnico. Po 10 minutah mora ekipa prenehati z merjenjem. Na minskem polju ni dovoljeno meriti razdalje z laserskim razdaljemerom. <p><b>Možno število točk: 100</b></p></p>
+                            @break
+                        @case(36)
+                            <p><span class="kt-title">Bombe!</span><br>
+                            Podobno minskemu polju, namenjena je le GGjem. Po gozdu so postavljeni listki s črkami. Ekipa po istem principu kot za minsko polje (4 razdalje in 4 koti) išče posamezne bombe, ki so označene s črkami. Vsaka pravilna črka prinese 20 točk, dokler ekipa ne zgreši pravilne črke. Črke so med seboj oddaljene vsaj en meter. Časa za nalogo je 10 minut, ki je vštet v časovnico. Po 10 minutah mora ekipa prenehati z merjenjem. <p><b>Možno število točk: 80</b></p></p>
+                            @break
+                        @case(37)
+                            <p><span class="kt-title">Spretnostno tekmovanje</span><br>
+                            Ekipa mora uspešno prečkati progo in/ali opraviti praktične naloge, ki jih zahteva kontrolor. Upoštevata se čas ali natančnost prehoda. <p><b>Možno število točk: 75</b></p></p>
+                            @break
+                        @case(38)
+                            <p><span class="kt-title">KT na vrisani poti</span><br>
+                            se skriva nekje na poti med dvema kontrolnima točkama. Pot med tema dvema kontrolnima točkama je označena tudi na karti. Za najdemo KT ekipa prejme 70 točk. Za pravilni vris KT na karto ekipa dobi dodatnih 20 točk. KT se vriše s pikico ter krogcem premera do pol centimetra. Pravilnost vrisa se preveri na KT ali na cilju. Dobi lahko tudi 20 točk za krajšo nalogo, ki jo zahteva kontrolor. <p><b>Možno število točk: 40</b></p></p>
+                            @break
+                        @case(39)
+                            <p><span class="kt-title">Mrtva KT</span><br>
+                            je označena z zastavico in „kresničko", na njej sta perforator in SORTIDENT postaja. Na njej se ne opravlja naloge, lahko pa je prisoten kontrolor, ki preverja če je na KT prišla celotna ekipa.</p>
+                            @break
+                        @case(40)
+                            <p><span class="kt-title">KT presenečenja</span><br>
+                            Kot ime samo pove, lahko pričakujete nalogo presenečenja. <p><b>Možno število točk: 40</b></p></p>
+                            @break
+                        @case(41)
+                            <p><span class="kt-title">Skica terena pod kotom</span><br>
+                            Le za PP in RR/Gr ekipe. Ekipa riše skico terena pod kotom v merilu, ki ga določi organizator, z največjim polmerom 150 metrov. Čas risanja 20-30 min (točen čas pove organizator na sestanku vodij ekip-napisan bo tudi na časovnici) je vštet v časovnico. List za risanje skice dobi ekipa na kontrolni točki, kjer tudi odda končni izdelek. V primeru prekoračitve predvidenega časa, je za prvih 20 min prekoračitve -1 točka/min, za vsako nadaljnjo prekoračeno minuto pa -3 točke. <p><b>Možno število točk: 100</b></p></p>
+                            @break
+                        @case(42)
+                            <p><span class="kt-title">»Direkt«</span><br>
+                            Le za PP in RR/Gr ekipe. Na štartnem listu ali na živi KT ekipa prejme dva azimuta in eno razdaljo. Najprej gre ekipa za dano razdaljo (D1) v smeri prvega azimuta (A1), nato pa od tam naprej v smeri drugega azimuta (A2). Začetek drugega azimuta ni označen ne na karti, ne v naravi, temveč ekipa sama oceni kdaj se je za določeno razdaljo (D1) premaknila v smeri prvega azimuta (A1). Najmanjša razdalja do KT (od prejšnje KT) je 200 metrov, najdaljša pa 1500 metrov. Ekipa prejme točke (70) za najdeno KT »Direkt« le, če je našla tudi KT pred njo. <p><b>Možno število točk: 70</b></p></p>
+                            @break
+                        @case(43)
+                            <p><span class="kt-title">Štafeta</span><br>
+                            Je namenjena GG/PP/RR/Gr ekipam. Ekipa mora opraviti 5 predaj. Vsak član mora opraviti vsaj eno predajo, če ekipa šteje 4 člane, pa lahko eden od članov gre dvakrat. Naloga je vredna 100 točk. Točkuje se relativno po zaostanku glede na čas najboljše ekipe v kategoriji, vendar v primeru, da ekipa preseže dvojni čas najhitreje opravljene naloge, se naloga točkuje z nič točkami. Dodeljen čas za opravljanje naloge je 5 min. Po 8 min pa se opravljanje naloge prekine in takrat se za vsako neperforirano postajo ekipi prišteje pribitek (1,5 min). Končni seštevek opravljanja naloge se ne upošteva pri končnem času celotnega tekmovanja. V primeru, da tekmovalec namerno poškoduje progo, se nalogo točkuje z nič točkami. V primeru goljufije pa kontrolor ekipi dodeli kazenski pribitek 1,5 min. <p><b>Možno število točk: 100</b></p></p>
+                            
+                            <h3>Tabela nalog po kategorijah</h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Naloga</th>
+                                        <th>GG</th>
+                                        <th>PP</th>
+                                        <th>RR/grče</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Topotest</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bonus točke</td>
+                                        <td></td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Orientacijski pohod</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prihod pod kotom</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spretnostno tekmovanje</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>KT na vrisani poti</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>KT presenečenja</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mrtva KT</td>
+                                        <td>X</td>
+                                        <td>XX</td>
+                                        <td>XXX</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bombe</td>
+                                        <td>X</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prehod minskega polja</td>
+                                        <td></td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skica terena pod kotom</td>
+                                        <td></td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Štafeta</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>"Direkt"</td>
+                                        <td></td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MOŽNIH TOČK:</td>
+                                        <td>780</td>
+                                        <td>1160</td>
+                                        <td>1280</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            
+                            @break
+                        @case(44)
+                            <p>Ekipa je diskvalificirana, če med orientacijskim pohodom uporablja prevozna sredstva, če prekorači dvakratni čas in čas za naloge ali zaradi kršenja pravil in netaborniškega vedenja.</p>
+                            @break
+                        @case(45)
+                            <p>Ekipa, ki zbere največ točk je zmagovalna ekipa. Prvim trem ekipam v posamezni kategoriji se podelijo praktične nagrade, lahko pa tudi za najboljše dosežke pri posameznih nalogah in skupno uvrstitev v točkovanju rodov.</p>
+                            @break
+                        @case(46)
+                            <p>Pravila so bila zapisana in potrjena iz strani rodove uprave Rodu skalnih taborov, dne 8. 9. 2025</p>
+                            @break
+                        @endswitch
+                        @endfor
+
+
+</section>
+</div>
+</div>
+</div>
 @endsection
 ```
 
 # resources/views/home.blade.php
 
 ```php
-<!DOCTYPE html>
-<html lang="sl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZNOT 2023 - Zimsko nočno orientacijsko tekmovanje</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem 0;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-        }
-        .info-box {
-            background-color: #ecf0f1;
-            border-radius: 5px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-        .info-box h2 {
-            color: #2980b9;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Domov</a></li>
-                <li><a href="#razpis">Razpis</a></li>
-                <li><a href="#pravila">Pravila</a></li>
-                <li><a href="#rezultati">Rezultati</a></li>
-                <li><a href="#galerija">Galerija</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h1>ZNOT 2023</h1>
-        <h2>Zimsko nočno orientacijsko tekmovanje</h2>
-        
-        <div class="info-box">
-            <h2>Datum</h2>
-            <p>2. 12. – 3. 12. 2023</p>
-            <p>Prijave se odprejo v petek ob 14.00 in zaprejo ob 15.30</p>
+@extends('layouts.app')
+
+@section('title', 'ZNOT 2024 - Zimsko nočno orientacijsko tekmovanje')
+
+@section('content')
+<div class="hero-container">
+    <div class="content-wrapper">
+        <section class="hero-content">
+            <h1>ZNOT 2024</h1>
+            <p style="color: #4da8da">2-3.12.2024</p>
+            <div class="button-container">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScxIFI6naDXaDlA4T8-yiw7UT1bbcayUfp66t0dd-rEqXXtQQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSecCuyssADh18s3zzXIaI0_kLvA__nqNzVBTYOyZPzf_yNWrQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+            </div>
+        </section>
+
+        <div class="scrollable-content">
+            <section class="info-section">
+                <h2>OSNOVNE INFORMACIJE</h2>
+                <p><b>Kdaj:</b> 30. 11. – 1. 12. 2024</p>
+                <p>Prijave se odprejo ob 14.00 in zaprejo ob 15.30. Nato sledi zbor ekip. Zaključni zbor ekip bo v soboto okoli 9.00.
+                </p>
+                <p><b>Kje:</b> Osnovna šola Dob</p>
+            </section>
+
+            <section class="info-section">
+                <h2>STAROSTNE KATEGORIJE</h2>
+                <ul>
+                    <li>Mlajši gozdovniki in gozdovnice (GG) – od 11 do 12 let</li>
+                    <li>Starejši gozdovniki in gozdovnice (GG) – od 13 do 14 let</li>
+                    <li>Popotniki in popotnice (PP) – od 15 do 20 let</li>
+                    <li>Raziskovalci in raziskovalke (RR) ter grče (Gr) – 21 let in več</li>
+                </ul>
+                <p><b>Petčlanske ekipe tekmujejo v ustrezni kategoriji. Starost tekmovalcev se računa po koledarskem letu.</b></p>
+                <p>Število ekip je po kategorijah omejeno na 25 GG (mlajši) ekip, 25 GG (starejši) ekip, 35 PP ekip in 20 RR&GRČE ekip. Na podlagi števila prijavljenih ekip, se lahko te omejitve spremenijo. Spremembe bomo objavili v obvestilih. Vsako dekle ekipi prinese dodatne točke (skladno s pravili).</p>
+            </section>
+
+            <section class="info-section">
+                <h2>PRIJAVE</h2>
+                <p>Ob prijavi ekipa navede: starostno kategorijo, v kateri tekmuje, ime, priimek, elektronski naslov in telefonsko številko vodje ekipe, prehranske posebnosti.</p>
+                <p>Na tekmovanju se uporablja elektronski sistem perforiranja (SportIdent), zato naj ekipe, ki imajo svoje čipe, to navedejo ob prijavi ter napišejo njegovo številko. <b>Vse ostale ekipe, ki si bodo čip izposodile od organizatorja, morajo pri prijavi oz. pri plačilu štartnine plačati dodatna 2€ za izposojo.</b></p>
+                <!-- <div class="button-container">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScxIFI6naDXaDlA4T8-yiw7UT1bbcayUfp66t0dd-rEqXXtQQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSecCuyssADh18s3zzXIaI0_kLvA__nqNzVBTYOyZPzf_yNWrQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+                </div> -->
+
+                <p>Rok plačila štartnine in s tem prijav je <b>ponedeljek 18. november 2024</b> do polnoči. Prijava ekipe je veljavna šele ob plačilu štartnine in ob poslanem potrdilu plačila na <b>znot.rst@gmail.com</b>, iz katerega je razvidno <b>ime ekipe, rod in datum plačila</b> . Ob nejasnem/nepravilnem plačilu vrnemo štartnino in obdržimo znesek za stroške nakazila. Štartnina ob prijavi do vključno <b>ponedeljek 4. novembra 2024</b>  do polnoči znaša <b>55€</b> (57€ ob izposoji čipa) na ekipo. Po <b>4. novembru 2024</b> se štartnina zviša na <b>75€</b> (77€ ob izposoji čipa) na ekipo.
+                </p>
+
+                <p>Cena se obračuna glede na datum plačila in NE datum izpolnjenega obrazca oz. je nižja cena veljavna le pri plačilu znotraj roka cenejših prijav. V primeru izposoje čipa od organizatorja, mora ekipa ob plačilu štartnine (v primeru cenejših in dražjih prijav) plačati dodatna 2€.
+                </p>
+
+                
+                <p>Odjave so možne do vključno petka 22. novembra 2024. Do tega datuma vračamo štartnino in obdržimo znesek za stroške nakazila. Pri odjavi po <b>22. novembru 2024</b> štartnine ne vračamo (prav tako ne plačila za izposojo čipa).
+                </p>
+
+                <p>Na dan ZNOT-a se ob prijavi ekipe plača kavcija za čip v vrednosti 40€, katero se vrne ekipi na cilju ob vrnitvi čipa.
+                </p>
+
+                <h4>Štartnino lahko poravnate na:</h4>
+                <p>transakcijskem računu: <b>SI56-0230-0001-2196-019</b> odprtem pri Novi ljubljanski banki d.d.
+                </p>
+
+                <p>BIC banke: <b>LJBASI2X</b>
+                </p>
+
+                <p>namen nakazila: <b>ime ekipe + ime rodu</b> 
+                </p>
+                <p> uporabite sklic: <b>1111-2024</b>
+                </p>
+
+                <p> prejemnik: <b>RST Domžale, Kopališka cesta 4, 1230 Domžale</b> 
+                </p>
+
+                <p>(Upoštevali bomo samo tista plačila, za katera se bo iz namena plačila nedvoumno videlo za katero ekipo je namenjeno).
+                </p>
+
+                <p>Vsi mladoletni udeleženci morajo ob prijavi predložiti še potrdilo za mladoletne osebe, v primeru da tega ne naredijo se ne bodo smeli udeležiti tekmovanja. Prav tako se nobena ekipa (mladoletni in polnoletni) ne bo smela udeležiti tekmovanja, če pred tekmovanjem ne bo poslana Izjava starešine na mail <b>znot.rst@gmail.com</b>. Netaborniške ekipe morajo prav tako poslati enako izjavo, ki jo podpiše predsednik kluba oz. vodja društva.
+                </p>
+                <p>Plačilo štartnin in prijave na dan tekmovanja niso možne. Pridržujemo si pravico, da rok prijav skrajšamo ob zapolnitvi prostih mest!
+                </p>
+            </section>
+
+            <section class="info-section">
+                <h2>SOLO KATEGORIJA</h2>
+                <p>Za vodnike, ki na ZNOT pridejo kot spremljevalci članov prijavnine ni. Za vse ostale znaša 7€.  Za prijave in več informacij pišite na znot.rst@gmail.com 
+                </p>
+
+            </section>
         </div>
+    </div>
+</div>
+
+@endsection
+
+
+@section('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const navbar = document.querySelector('.navbar');
+    const heroContainer = document.querySelector('.hero-container');
+    const scrollableContent = document.querySelector('.scrollable-content');
+    const heroContent = document.querySelector('.hero-content');
+
+    function handleScroll() {
+        let scrollPosition = window.scrollY;
+        let navbarOpacity = Math.min(scrollPosition / 300, 0.8);
         
-        <div class="info-box">
-            <h2>Lokacija</h2>
-            <p>OŠ Simona Jenka Smlednik, Smlednik 73, 1216 Smlednik</p>
-        </div>
+        // Povečali smo začetno zameglitev in maksimalno vrednost
+        let heroBlur = Math.min(scrollPosition / 50, 15);  // Začetna vrednost 2px, max 15px
         
-        <div class="info-box">
-            <h2>Starostne kategorije</h2>
-            <ul>
-                <li>Mlajši gozdovniki in gozdovnice (GG) – od 11 do 12 let</li>
-                <li>Starejši gozdovniki in gozdovnice (GG) – od 13 do 14 let</li>
-                <li>Popotniki in popotnice (PP) – od 15 do 20 let</li>
-                <li>Raziskovalci in raziskovalke (RR) ter grče (Gr) – 21 let in več</li>
-            </ul>
-            <p>Petčlanske ekipe tekmujejo v ustrezni kategoriji. Starost tekmovalcev se računa po koledarskem letu.</p>
-        </div>
+        navbar.style.backgroundColor = `rgba(15, 40, 80, ${navbarOpacity})`;
+        navbar.style.backdropFilter = `blur(${Math.min(heroBlur, 10)}px)`;
         
-        <div class="info-box">
-            <h2>Prijava</h2>
-            <p>Ob prijavi ekipa navede: starostno kategorijo, v kateri tekmuje, ime, priimek, elektronski naslov in telefonsko številko vodje ekipe, prehranske posebnosti.</p>
-            <p>Na tekmovanju se uporablja elektronski sistem perforiranja (SportIdent), zato naj ekipe, ki imajo svoje čipe, to navedejo ob prijavi ter napišejo njegovo številko.</p>
-            <p>Vse ostale ekipe, ki si bodo čip izposodile od organizatorja, morajo pri prijavi oz. pri plačilu štartnine plačati dodatna 2€ za izposojo.</p>
-            <p><strong>Prijavnica:</strong> <a href="mailto:znot.rst@gmail.com">znot.rst@gmail.com</a></p>
-        </div>
-    </main>
-</body>
-</html>
+        // Apliciramo zameglitev na heroContainer
+        heroContainer.style.setProperty('--blur', `${heroBlur}px`);
+
+        // Postopno prikazovanje vsebine
+        if (scrollPosition > heroContent.offsetHeight / 2) {
+            scrollableContent.style.opacity = '1';
+            scrollableContent.style.transform = 'translateY(0)';
+        } else {
+            scrollableContent.style.opacity = '0';
+            scrollableContent.style.transform = 'translateY(20px)';
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Pokliči funkcijo ob nalaganju strani
+});
+</script>
+@endsection
+
 ```
 
 # resources/views/galerija.blade.php
@@ -4039,28 +5392,35 @@ return [
 ```php
 @extends('layouts.app')
 
-@section('title', 'Galerija')
+@section('title', 'ZNOT 2024 - Galerija')
 
 @section('content')
-    <h1>Galerija</h1>
-    <p>Tukaj bo prikazana galerija slik.</p>
-    <!-- Začasna rešitev: povezava do Google Drive mape -->
-    <a href="https://drive.google.com/drive/folders/YOUR_FOLDER_ID" target="_blank" class="btn btn-primary">Oglej si galerijo na Google Drive</a>
+<div class="hero-container blurred">
+    <div class="content-wrapper">
+        <div class="scrollable-content">
+            <section class="info-section margin-top">
+                <h2>Slike tekmovanja</h2>                
+<!--                 <div class="button-container" style="justify-content:center;">
+                    <a href="/" class="btn btn-custom btn-primary">ZNOT 2024</a>
+                </div>
+ -->                <div class="button-container" style="justify-content:center;">
+                    <a href="https://www.flickr.com/photos/192960739@N04/albums/72177720313276318/" class="btn btn-custom btn-primary" target="_blank">ZNOT 2023</a>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
 @endsection
 ```
 
-# storage/framework/.gitignore
+# storage/app/.gitignore
 
 ```
-compiled.php
-config.php
-down
-events.scanned.php
-maintenance.php
-routes.php
-routes.scanned.php
-schedule-*
-services.json
+*
+!private/
+!public/
+!.gitignore
 
 ```
 
@@ -4087,7 +5447,115 @@ import './bootstrap';
 
 ```
 
+# public/js/navbar-mobile.js
+
+```js
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const body = document.body;
+
+    // Ustvarimo overlay element
+    const overlay = document.createElement('div');
+    overlay.classList.add('overlay');
+    body.appendChild(overlay);
+
+    navbarToggler.addEventListener('click', function() {
+        navbarCollapse.classList.toggle('show');
+        overlay.classList.toggle('show');
+        body.classList.toggle('menu-open');
+    });
+
+    overlay.addEventListener('click', function() {
+        navbarCollapse.classList.remove('show');
+        overlay.classList.remove('show');
+        body.classList.remove('menu-open');
+    });
+
+    // Zapri meni ob kliku na povezavo
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navbarCollapse.classList.remove('show');
+            overlay.classList.remove('show');
+            body.classList.remove('menu-open');
+        });
+    });
+});
+```
+
+# public/js/common.js
+
+```js
+document.addEventListener('DOMContentLoaded', (event) => {
+    const navbar = document.querySelector('.navbar');
+    const heroContainer = document.querySelector('.hero-container');
+    const scrollableContent = document.querySelector('.scrollable-content');
+    const heroContent = document.querySelector('.hero-content');
+    const isHomePage = document.body.classList.contains('home-page');
+
+    function handleScroll() {
+        let scrollPosition = window.scrollY;
+        let navbarOpacity = Math.min(scrollPosition / 300, 0.8);
+        
+        let heroBlur = Math.min(scrollPosition / 50, 15);
+        
+        navbar.style.backgroundColor = `rgba(15, 40, 80, ${navbarOpacity})`;
+        navbar.style.backdropFilter = `blur(${Math.min(heroBlur, 10)}px)`;
+        
+        if (heroContainer) {
+            heroContainer.style.setProperty('--blur', `${heroBlur}px`);
+        }
+
+        if (isHomePage && scrollableContent && heroContent) {
+            scrollableContent.classList.remove('initial-hide');
+            if (scrollPosition > heroContent.offsetHeight / 2) {
+                scrollableContent.classList.add('fade-in');
+            } else {
+                scrollableContent.classList.remove('fade-in');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    
+    if (isHomePage) {
+        // Dodajte razred za začetno skrivanje
+        if (scrollableContent) {
+            scrollableContent.classList.add('initial-hide');
+        }
+        
+        // Zakasnitev prvega izvajanja handleScroll
+        setTimeout(() => {
+            handleScroll();
+        }, 100);
+    } else {
+        handleScroll();
+    }
+});
+```
+
+# public/images/znot-logo-2025.png
+
+This is a binary file of the type: Image
+
+# public/images/rst-logo.png
+
+This is a binary file of the type: Image
+
 # public/images/rst-logo-1-e1616518258780.png
+
+This is a binary file of the type: Image
+
+# public/images/location.svg
+
+This is a file of the type: SVG Image
+
+# public/images/ig.png
+
+This is a binary file of the type: Image
+
+# public/images/fb.png
 
 This is a binary file of the type: Image
 
@@ -4095,30 +5563,21 @@ This is a binary file of the type: Image
 
 This is a binary file of the type: Image
 
-# tests/Feature/ExampleTest.php
+# public/files/potrdilo-za-mladoletne.pdf
 
-```php
-<?php
+This is a binary file of the type: PDF
 
-namespace Tests\Feature;
+# public/files/izjava-staresine.pdf
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+This is a binary file of the type: PDF
 
-class ExampleTest extends TestCase
-{
-    /**
-     * A basic test example.
-     */
-    public function test_the_application_returns_a_successful_response(): void
-    {
-        $response = $this->get('/');
+# public/files/ilovepdf_converted.zip
 
-        $response->assertStatus(200);
-    }
-}
+This is a binary file of the type: Compressed Archive
 
-```
+# public/files/Izjava starešine.doc
+
+This is a binary file of the type: Word Document
 
 # database/seeders/DatabaseSeeder.php
 
@@ -4308,6 +5767,522 @@ return new class extends Migration
 
 ```
 
+# public/css/styles.css
+
+```css
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0a1931;
+    color: #ffffff;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    padding: 10px 0;
+    height: 80px;
+}
+
+.navbar .container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.navbar-brand {
+    position: absolute;
+    left: 120px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.navbar-brand img {
+    max-height: 50px;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 240px); /* 120px na vsaki strani za logo */
+    margin: 0 auto;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+    font-size: 20px;
+}
+
+.nav-link:hover {
+    color: #4da8da !important;
+}
+.nav-link.active {
+    color: #4da8da !important;
+    font-weight: bold;
+}
+
+.location{
+    width: 50px; 
+    height: 50px; 
+    margin-right: 5px;
+}
+
+.text-location{
+    color: #4da8da; margin-bottom:0px; margin-top:0px; font-size:3rem;
+}
+.text-location:hover{
+    text-decoration: underline;
+}
+.location-href{
+    color: white;
+}
+.location-href:hover{
+    text-decoration: underline;
+}
+/* Za manjše zaslone */
+@media (max-width: 991px) {
+    .navbar .container-fluid {
+        justify-content: space-between;
+    }
+
+    .navbar-brand {
+        position: static;
+        transform: none;
+    }
+
+    .navbar-toggler {
+        order: 2;
+    }
+
+    .navbar-collapse {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        height: 100vh;
+        width: 100px;
+        background-color: #0a1931;
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    .navbar-collapse.show {
+        right: 0;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        width: auto;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: 10px 0;
+    }
+}
+
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.overlay.show {
+    display: block;
+}
+
+
+
+
+.hero-container {
+    min-height: 100vh;
+    background-image: url('../images/homepage/ozadje.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow-y: auto;
+}
+
+.hero-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(var(--blur, 0px));
+    transition: backdrop-filter 0.3s ease;
+    z-index: 1;
+}
+.hero-container.blurred::before {
+    backdrop-filter: blur(15px);
+}
+
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size: 8rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 4rem;
+    font-weight: 560;
+
+}
+
+.scrollable-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.home-page .scrollable-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.home-page .scrollable-content.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.home-page .scrollable-content.initial-hide {
+    visibility: hidden;
+}
+
+
+.info-section {
+    background-color: rgb(58 58 58 / 59%);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px); /* Za podporo v Safari brskalniku */
+
+}
+
+
+.info-section p{
+    font-size: 18px;
+}
+
+h1, h2, h4 {
+    color: #4da8da;
+    text-align: center;
+}
+h4{
+    text-align: left;
+}
+ul {
+    padding-left: 20px;
+}
+
+a {
+    color: #4da8da;
+    text-decoration: none;
+}
+
+
+
+/* GUMBA START */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Povečamo prostor med gumboma */
+    margin-top: 20px;
+}
+
+.btn-custom {
+    background-color: rgba(77, 168, 218, 0.2);
+    border: 1px solid rgba(77, 168, 218, 0.5);
+    color: #ffffff;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 30px;
+    width: auto; /* Omogočimo, da se širina prilagodi vsebini */
+    min-width: 150px; /* Nastavimo minimalno širino */
+    text-align: center;
+    white-space: nowrap;
+}
+
+.btn-custom:hover, .btn-custom:focus {
+    background-color: rgba(77, 168, 218, 0.4);
+    border-color: rgba(77, 168, 218, 0.8);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary.btn-custom {
+    background-color: rgba(77, 168, 218, 0.3);
+}
+
+.btn-secondary.btn-custom {
+    background-color: rgba(108, 117, 125, 0.3);
+}
+/* GUMBA END */
+
+
+/* FOOTER START */
+/* ... obstoječi stili ... */
+
+.site-footer {
+    background-color: rgba(10, 25, 49, 0.8);
+    padding: 20px 0;
+    margin-top: 40px;
+    position: relative; /* Dodano za zagotovitev, da je footer nad zamegljenim ozadjem */
+    z-index: 10; /* Zagotovimo, da je footer nad zamegljenim ozadjem */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+.footer-info {
+    text-align: center;
+    flex: 1;
+    margin: 0 20px;
+}
+
+.footer-info p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icon img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover img {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-logo, .footer-info, .footer-social {
+        margin-bottom: 20px;
+    }
+    .location{
+        width: 20px; 
+        height: 20px; 
+        margin-right: 5px;
+    }
+    .text-location{
+        font-size: 22px;
+    }
+    
+}
+/* FOOTER END */
+
+.kt-title{
+    font-weight: bold;
+    color: #4da8da;
+}
+
+th, td{
+    color: white;
+}
+
+.margin-top{
+    margin-top: 10%;
+}
+
+
+
+
+
+
+/* MOBILE */
+
+/* ... (obstoječi stili) ... */
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+
+    .hero-content p {
+        font-size: 2rem;
+    }
+
+    .btn-custom {
+        font-size: 18px;
+        padding: 8px 16px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .info-section {
+        padding: 20px;
+    }
+
+    .info-section p {
+        font-size: 16px;
+    }
+
+    h1, h2 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    .navbar-brand {
+        left: 10px;
+    }
+
+    .navbar-brand img {
+        max-height: 40px;
+    }
+
+    .nav-link {
+        font-size: 16px;
+        margin: 0 10px;
+    }
+
+    .content-wrapper {
+        padding: 60px 15px;
+    }
+
+    .margin-top {
+        margin-top: 10%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+    }
+
+    .btn-custom {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+
+    .info-section p {
+        font-size: 14px;
+    }
+
+    h1, h2 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    .navbar-brand img {
+        max-height: 30px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+        margin: 0 5px;
+    }
+}
+
+/* Prilagoditve za tabele na mobilnih napravah */
+@media (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 5px;
+    }
+}
+
+/* Dodatne prilagoditve za zelo majhne zaslone */
+@media (max-width: 320px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .btn-custom {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+}
+
+
+```
+
 # database/factories/UserFactory.php
 
 ```php
@@ -4358,6 +6333,53 @@ class UserFactory extends Factory
 
 ```
 
+# tests/Feature/ExampleTest.php
+
+```php
+<?php
+
+namespace Tests\Feature;
+
+// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class ExampleTest extends TestCase
+{
+    /**
+     * A basic test example.
+     */
+    public function test_the_application_returns_a_successful_response(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+    }
+}
+
+```
+
+# tests/Unit/ExampleTest.php
+
+```php
+<?php
+
+namespace Tests\Unit;
+
+use PHPUnit\Framework\TestCase;
+
+class ExampleTest extends TestCase
+{
+    /**
+     * A basic test example.
+     */
+    public function test_that_true_is_true(): void
+    {
+        $this->assertTrue(true);
+    }
+}
+
+```
+
 # app/Providers/AppServiceProvider.php
 
 ```php
@@ -4383,6 +6405,59 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+    }
+}
+
+```
+
+# app/Models/User.php
+
+```php
+<?php
+
+namespace App\Models;
+
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable
+{
+    use HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 }
 
@@ -4696,148 +6771,6 @@ class AppServiceProvider extends ServiceProvider
 
 ```
 
-# tests/Unit/ExampleTest.php
-
-```php
-<?php
-
-namespace Tests\Unit;
-
-use PHPUnit\Framework\TestCase;
-
-class ExampleTest extends TestCase
-{
-    /**
-     * A basic test example.
-     */
-    public function test_that_true_is_true(): void
-    {
-        $this->assertTrue(true);
-    }
-}
-
-```
-
-# app/Models/User.php
-
-```php
-<?php
-
-namespace App\Models;
-
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-
-class User extends Authenticatable
-{
-    use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
-}
-
-```
-
-# storage/app/public/.gitignore
-
-```
-*
-!.gitignore
-
-```
-
-# storage/app/private/.gitignore
-
-```
-*
-!.gitignore
-
-```
-
-# resources/views/layouts/app.blade.php
-
-```php
-<!DOCTYPE html>
-<html lang="sl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="/">Moja Spletna Stran</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Domov</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/razpis">Razpis</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/pravila">Pravila</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/rezultati">Rezultati</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/galerija">Galerija</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main class="container mt-4">
-        @yield('content')
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>„„
-```
-
 # storage/framework/views/ecabcc469e1d20e0804e31904db10bac.php
 
 ```php
@@ -5125,106 +7058,138 @@ class User extends Authenticatable
 # storage/framework/views/cff17d875664268deabf63118a68100d.php
 
 ```php
-<!DOCTYPE html>
-<html lang="sl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZNOT 2023 - Zimsko nočno orientacijsko tekmovanje</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem 0;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-        }
-        .info-box {
-            background-color: #ecf0f1;
-            border-radius: 5px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-        .info-box h2 {
-            color: #2980b9;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Domov</a></li>
-                <li><a href="#razpis">Razpis</a></li>
-                <li><a href="#pravila">Pravila</a></li>
-                <li><a href="#rezultati">Rezultati</a></li>
-                <li><a href="#galerija">Galerija</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h1>ZNOT 2023</h1>
-        <h2>Zimsko nočno orientacijsko tekmovanje</h2>
-        
-        <div class="info-box">
-            <h2>Datum</h2>
-            <p>2. 12. – 3. 12. 2023</p>
-            <p>Prijave se odprejo v petek ob 14.00 in zaprejo ob 15.30</p>
+<?php $__env->startSection('title', 'ZNOT 2024 - Zimsko nočno orientacijsko tekmovanje'); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="hero-container">
+    <div class="content-wrapper">
+        <section class="hero-content">
+            <h1>ZNOT 2024</h1>
+            <p style="color: #4da8da">2-3.12.2024</p>
+            <div class="button-container">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScxIFI6naDXaDlA4T8-yiw7UT1bbcayUfp66t0dd-rEqXXtQQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSecCuyssADh18s3zzXIaI0_kLvA__nqNzVBTYOyZPzf_yNWrQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+            </div>
+        </section>
+
+        <div class="scrollable-content">
+            <section class="info-section">
+                <h2>OSNOVNE INFORMACIJE</h2>
+                <p><b>Kdaj:</b> 30. 11. – 1. 12. 2024</p>
+                <p>Prijave se odprejo ob 14.00 in zaprejo ob 15.30. Nato sledi zbor ekip. Zaključni zbor ekip bo v soboto okoli 9.00.
+                </p>
+                <p><b>Kje:</b> Osnovna šola Dob</p>
+            </section>
+
+            <section class="info-section">
+                <h2>STAROSTNE KATEGORIJE</h2>
+                <ul>
+                    <li>Mlajši gozdovniki in gozdovnice (GG) – od 11 do 12 let</li>
+                    <li>Starejši gozdovniki in gozdovnice (GG) – od 13 do 14 let</li>
+                    <li>Popotniki in popotnice (PP) – od 15 do 20 let</li>
+                    <li>Raziskovalci in raziskovalke (RR) ter grče (Gr) – 21 let in več</li>
+                </ul>
+                <p><b>Petčlanske ekipe tekmujejo v ustrezni kategoriji. Starost tekmovalcev se računa po koledarskem letu.</b></p>
+                <p>Število ekip je po kategorijah omejeno na 25 GG (mlajši) ekip, 25 GG (starejši) ekip, 35 PP ekip in 20 RR&GRČE ekip. Na podlagi števila prijavljenih ekip, se lahko te omejitve spremenijo. Spremembe bomo objavili v obvestilih. Vsako dekle ekipi prinese dodatne točke (skladno s pravili).</p>
+            </section>
+
+            <section class="info-section">
+                <h2>PRIJAVE</h2>
+                <p>Ob prijavi ekipa navede: starostno kategorijo, v kateri tekmuje, ime, priimek, elektronski naslov in telefonsko številko vodje ekipe, prehranske posebnosti.</p>
+                <p>Na tekmovanju se uporablja elektronski sistem perforiranja (SportIdent), zato naj ekipe, ki imajo svoje čipe, to navedejo ob prijavi ter napišejo njegovo številko. <b>Vse ostale ekipe, ki si bodo čip izposodile od organizatorja, morajo pri prijavi oz. pri plačilu štartnine plačati dodatna 2€ za izposojo.</b></p>
+                <!-- <div class="button-container">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScxIFI6naDXaDlA4T8-yiw7UT1bbcayUfp66t0dd-rEqXXtQQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSecCuyssADh18s3zzXIaI0_kLvA__nqNzVBTYOyZPzf_yNWrQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+                </div> -->
+
+                <p>Rok plačila štartnine in s tem prijav je <b>ponedeljek 18. november 2024</b> do polnoči. Prijava ekipe je veljavna šele ob plačilu štartnine in ob poslanem potrdilu plačila na <b>znot.rst@gmail.com</b>, iz katerega je razvidno <b>ime ekipe, rod in datum plačila</b> . Ob nejasnem/nepravilnem plačilu vrnemo štartnino in obdržimo znesek za stroške nakazila. Štartnina ob prijavi do vključno <b>ponedeljek 4. novembra 2024</b>  do polnoči znaša <b>55€</b> (57€ ob izposoji čipa) na ekipo. Po <b>4. novembru 2024</b> se štartnina zviša na <b>75€</b> (77€ ob izposoji čipa) na ekipo.
+                </p>
+
+                <p>Cena se obračuna glede na datum plačila in NE datum izpolnjenega obrazca oz. je nižja cena veljavna le pri plačilu znotraj roka cenejših prijav. V primeru izposoje čipa od organizatorja, mora ekipa ob plačilu štartnine (v primeru cenejših in dražjih prijav) plačati dodatna 2€.
+                </p>
+
+                
+                <p>Odjave so možne do vključno petka 22. novembra 2024. Do tega datuma vračamo štartnino in obdržimo znesek za stroške nakazila. Pri odjavi po <b>22. novembru 2024</b> štartnine ne vračamo (prav tako ne plačila za izposojo čipa).
+                </p>
+
+                <p>Na dan ZNOT-a se ob prijavi ekipe plača kavcija za čip v vrednosti 40€, katero se vrne ekipi na cilju ob vrnitvi čipa.
+                </p>
+
+                <h4>Štartnino lahko poravnate na:</h4>
+                <p>transakcijskem računu: <b>SI56-0230-0001-2196-019</b> odprtem pri Novi ljubljanski banki d.d.
+                </p>
+
+                <p>BIC banke: <b>LJBASI2X</b>
+                </p>
+
+                <p>namen nakazila: <b>ime ekipe + ime rodu</b> 
+                </p>
+                <p> uporabite sklic: <b>1111-2024</b>
+                </p>
+
+                <p> prejemnik: <b>RST Domžale, Kopališka cesta 4, 1230 Domžale</b> 
+                </p>
+
+                <p>(Upoštevali bomo samo tista plačila, za katera se bo iz namena plačila nedvoumno videlo za katero ekipo je namenjeno).
+                </p>
+
+                <p>Vsi mladoletni udeleženci morajo ob prijavi predložiti še potrdilo za mladoletne osebe, v primeru da tega ne naredijo se ne bodo smeli udeležiti tekmovanja. Prav tako se nobena ekipa (mladoletni in polnoletni) ne bo smela udeležiti tekmovanja, če pred tekmovanjem ne bo poslana Izjava starešine na mail <b>znot.rst@gmail.com</b>. Netaborniške ekipe morajo prav tako poslati enako izjavo, ki jo podpiše predsednik kluba oz. vodja društva.
+                </p>
+                <p>Plačilo štartnin in prijave na dan tekmovanja niso možne. Pridržujemo si pravico, da rok prijav skrajšamo ob zapolnitvi prostih mest!
+                </p>
+            </section>
+
+            <section class="info-section">
+                <h2>SOLO KATEGORIJA</h2>
+                <p>Za vodnike, ki na ZNOT pridejo kot spremljevalci članov prijavnine ni. Za vse ostale znaša 7€.  Za prijave in več informacij pišite na znot.rst@gmail.com 
+                </p>
+
+            </section>
         </div>
+    </div>
+</div>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('scripts'); ?>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const navbar = document.querySelector('.navbar');
+    const heroContainer = document.querySelector('.hero-container');
+    const scrollableContent = document.querySelector('.scrollable-content');
+    const heroContent = document.querySelector('.hero-content');
+
+    function handleScroll() {
+        let scrollPosition = window.scrollY;
+        let navbarOpacity = Math.min(scrollPosition / 300, 0.8);
         
-        <div class="info-box">
-            <h2>Lokacija</h2>
-            <p>OŠ Simona Jenka Smlednik, Smlednik 73, 1216 Smlednik</p>
-        </div>
+        // Povečali smo začetno zameglitev in maksimalno vrednost
+        let heroBlur = Math.min(scrollPosition / 50, 15);  // Začetna vrednost 2px, max 15px
         
-        <div class="info-box">
-            <h2>Starostne kategorije</h2>
-            <ul>
-                <li>Mlajši gozdovniki in gozdovnice (GG) – od 11 do 12 let</li>
-                <li>Starejši gozdovniki in gozdovnice (GG) – od 13 do 14 let</li>
-                <li>Popotniki in popotnice (PP) – od 15 do 20 let</li>
-                <li>Raziskovalci in raziskovalke (RR) ter grče (Gr) – 21 let in več</li>
-            </ul>
-            <p>Petčlanske ekipe tekmujejo v ustrezni kategoriji. Starost tekmovalcev se računa po koledarskem letu.</p>
-        </div>
+        navbar.style.backgroundColor = `rgba(15, 40, 80, ${navbarOpacity})`;
+        navbar.style.backdropFilter = `blur(${Math.min(heroBlur, 10)}px)`;
         
-        <div class="info-box">
-            <h2>Prijava</h2>
-            <p>Ob prijavi ekipa navede: starostno kategorijo, v kateri tekmuje, ime, priimek, elektronski naslov in telefonsko številko vodje ekipe, prehranske posebnosti.</p>
-            <p>Na tekmovanju se uporablja elektronski sistem perforiranja (SportIdent), zato naj ekipe, ki imajo svoje čipe, to navedejo ob prijavi ter napišejo njegovo številko.</p>
-            <p>Vse ostale ekipe, ki si bodo čip izposodile od organizatorja, morajo pri prijavi oz. pri plačilu štartnine plačati dodatna 2€ za izposojo.</p>
-            <p><strong>Prijavnica:</strong> <a href="mailto:znot.rst@gmail.com">znot.rst@gmail.com</a></p>
-        </div>
-    </main>
-</body>
-</html><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php ENDPATH**/ ?>
+        // Apliciramo zameglitev na heroContainer
+        heroContainer.style.setProperty('--blur', `${heroBlur}px`);
+
+        // Postopno prikazovanje vsebine
+        if (scrollPosition > heroContent.offsetHeight / 2) {
+            scrollableContent.style.opacity = '1';
+            scrollableContent.style.transform = 'translateY(0)';
+        } else {
+            scrollableContent.style.opacity = '0';
+            scrollableContent.style.transform = 'translateY(20px)';
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Pokliči funkcijo ob nalaganju strani
+});
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/home.blade.php ENDPATH**/ ?>
 ```
 
 # storage/framework/views/c8a79938b0d0df232bc9e9dd4dc2bc6a.php
@@ -5239,13 +7204,54 @@ class User extends Authenticatable
 # storage/framework/views/b5a351152d5aa436eb0ca4eced453176.php
 
 ```php
-<?php $__env->startSection('title', 'Rezultati'); ?>
+<?php $__env->startSection('title', 'ZNOT 2024 - Rezultati'); ?>
 
 <?php $__env->startSection('content'); ?>
-    <h1>Rezultati</h1>
-    <p>Tukaj bodo prikazani rezultati.</p>
+<div class="hero-container blurred">
+    <div class="content-wrapper">
+        <div class="scrollable-content">
+            <section class="info-section margin-top">
+                <h2>Rezultati tekmovanja</h2>                
+                <div class="button-container" style="justify-content:center;">
+                    <a href="https://docs.google.com/spreadsheets/d/1_ptyF0Ml52Veu86LspUajc31aBNp4dKAy1EzNAYc7Gw/edit?gid=605383095#gid=605383095" class="btn btn-custom btn-primary" target="_blank">Poglej rezultate</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/rezultati.blade.php ENDPATH**/ ?>
+```
+
+# storage/framework/views/b48d502480a3377778bdbdb149c74143.php
+
+```php
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="<?php echo e(route('home')); ?>">
+            <img src="<?php echo e(asset('images/znot-logo-2025.png')); ?>" alt="ZNOT 2025 Logo" class="img-fluid">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link <?php echo e(request()->routeIs('home') ? 'active' : ''); ?>" href="<?php echo e(route('home')); ?>">Razpis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo e(request()->routeIs('pravila') ? 'active' : ''); ?>" href="<?php echo e(route('pravila')); ?>">Pravila</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo e(request()->routeIs('rezultati') ? 'active' : ''); ?>" href="<?php echo e(route('rezultati')); ?>">Rezultati</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo e(request()->routeIs('galerija') ? 'active' : ''); ?>" href="<?php echo e(route('galerija')); ?>">Galerija</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/partials/header.blade.php ENDPATH**/ ?>
 ```
 
 # storage/framework/views/a63fc1441f89d47ca7cbe25fbec882b8.php
@@ -5258,45 +7264,22 @@ class User extends Authenticatable
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $__env->yieldContent('title'); ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo e(asset('css/styles.css')); ?>" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="/">Moja Spletna Stran</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Domov</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/razpis">Razpis</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/pravila">Pravila</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/rezultati">Rezultati</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/galerija">Galerija</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main class="container mt-4">
-        <?php echo $__env->yieldContent('content'); ?>
+<body class="<?php echo e(Route::currentRouteName() === 'home' ? 'home-page' : ''); ?>">
+    <?php echo $__env->make('partials.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <main>
+    <?php echo $__env->yieldContent('content'); ?>
     </main>
+    <?php echo $__env->make('partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo e(asset('js/common.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/navbar-mobile.js')); ?>"></script>
+
+    <?php echo $__env->yieldContent('scripts'); ?>
 </body>
-</html>„„<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/layouts/app.blade.php ENDPATH**/ ?>
+</html><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/layouts/app.blade.php ENDPATH**/ ?>
 ```
 
 # storage/framework/views/a2b50a6a176d34ce5dbe16d46702cb75.php
@@ -5753,13 +7736,25 @@ class User extends Authenticatable
 # storage/framework/views/702d042c307c10ef3e38ea96b599c767.php
 
 ```php
-<?php $__env->startSection('title', 'Galerija'); ?>
+<?php $__env->startSection('title', 'ZNOT 2024 - Galerija'); ?>
 
 <?php $__env->startSection('content'); ?>
-    <h1>Galerija</h1>
-    <p>Tukaj bo prikazana galerija slik.</p>
-    <!-- Začasna rešitev: povezava do Google Drive mape -->
-    <a href="https://drive.google.com/drive/folders/YOUR_FOLDER_ID" target="_blank" class="btn btn-primary">Oglej si galerijo na Google Drive</a>
+<div class="hero-container blurred">
+    <div class="content-wrapper">
+        <div class="scrollable-content">
+            <section class="info-section margin-top">
+                <h2>Slike tekmovanja</h2>                
+<!--                 <div class="button-container" style="justify-content:center;">
+                    <a href="/" class="btn btn-custom btn-primary">ZNOT 2024</a>
+                </div>
+ -->                <div class="button-container" style="justify-content:center;">
+                    <a href="https://www.flickr.com/photos/192960739@N04/albums/72177720313276318/" class="btn btn-custom btn-primary" target="_blank">ZNOT 2023</a>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/galerija.blade.php ENDPATH**/ ?>
 ```
@@ -5822,11 +7817,308 @@ class User extends Authenticatable
 # storage/framework/views/4d40881e1cb4ab3a431293697e86f2a9.php
 
 ```php
-<?php $__env->startSection('title', 'Pravila'); ?>
+<?php $__env->startSection('title', 'ZNOT 2025 - Pravila'); ?>
 
 <?php $__env->startSection('content'); ?>
-    <h1>Pravila</h1>
-    <p>Tukaj so navedena pravila našega projekta.</p>
+<div class="hero-container blurred">
+    <div class="content-wrapper">
+
+        <div class="scrollable-content">
+            <section class="info-section margin-top">
+                <h2>Pravila Zimskega nočnega orientacijskega tekmovanja</h2>
+                
+                <?php for($i = 1; $i <= 46; $i++): ?>
+                    <?php if($i==18): ?>
+                    <h4>Pogoji tekmovanja</h4>
+                    <?php endif; ?>
+
+
+                    <?php if($i==31): ?>
+                    <h4>Opis nalog in točkovanje
+                    </h4>
+                    <?php endif; ?>
+
+
+                    <?php if($i==44): ?>
+                    <h4>Diskvalifikacije
+                    </h4>
+                    <?php endif; ?>
+
+                    <?php if($i==45): ?>
+                    <h4>Razglasitev in končne določbe
+                    </h4>
+                    <?php endif; ?>
+
+
+
+
+                    <p><strong><?php echo e($i); ?>. člen</strong></p>
+                    <?php switch($i):
+                        case (1): ?>
+                            <p>Zimsko nočno orientacijsko tekmovanje (ZNOT) organizira Rod skalnih taborov iz Domžal. Organizirano je vsako leto. Tekmovanje je enodnevno, poteka v noči iz sobote na nedeljo in vsebuje orientacijski pohod, naloge iz taborništva, orientacije in šaljive panoge.</p>
+                            <?php break; ?>
+                        <?php case (2): ?>
+                            <p>Vse ekipe, ki tekmujejo, imajo možnost prenočitve.</p>
+                            <?php break; ?>
+                        <?php case (3): ?>
+                            <p>Tekmovalci tekmujejo v štirih kategorijah:</p>
+                            <ul>
+                                <li>100 – Mlajši gozdovniki in gozdovnice (GG) – od 11 do 12 let</li>
+                                <li>200 – Starejši gozdovniki in gozdovnice (GG) – od 13 do 14 let</li>
+                                <li>300 – Popotniki in popotnice (PP) – od 15 do 20 let</li>
+                                <li>500 – Raziskovalci ter raziskovalke (RR) ter grče (Gr) – 21 let in več</li>
+                            </ul>
+                            <?php break; ?>
+                        <?php case (4): ?>
+                            <p>Ekipe so lahko mešane, za vsako dekle se dobi bonus točke.</p>
+                            <?php break; ?>
+                        <?php case (5): ?>
+                            <p>Ekipa šteje 5 članov. Ekipa s 4 člani lahko tekmuje brez olajšav. Ekipa s 3 ali manj člani tekmuje izven konkurence. Ekipa s 6 in več tekmovalci tekmuje prav tako izven konkurence, a je lahko eden od članov ekipe vodnik, ki ekipo spremlja na poti (za kategorijo mlajši GG). Tudi v tem primeru, ekipa tekmuje izven konkurence.</p>
+                            <?php break; ?>
+                        <?php case (6): ?>
+                            <p>V ekipi lahko samo en član odstopa od starostne kategorije v kateri tekmuje, vendar ne več kot za 1 leto. Starost tekmovalcev organizator lahko preveri s pregledom osebnih dokumentov tekom tekmovanja. Starost tekmovalcev se računa po koledarskem letu.</p>
+                            <?php break; ?>
+                        <?php case (7): ?>
+                            <p>Vsi tekmovalci tekmujejo na lastno odgovornost.</p>
+                            <?php break; ?>
+                        <?php case (8): ?>
+                            <p>Vodstvo tekmovanja vsaj mesec dni pred tekmovanjem objavi razpis tekmovanja. Lokacijo tekmovanja se lahko objavi kasneje, vendar ne kasneje kot 14 dni pred tekmovanjem.</p>
+                            <?php break; ?>
+                        <?php case (9): ?>
+                            <p>V razpisu ali na spletni strani vsaj 3 dni pred tekmovanjem organizator obvesti ekipe, na katerem listu DTK25 bo potekalo tekmovanje.</p>
+                            <?php break; ?>
+                        <?php case (10): ?>
+                            <p>Tekmovanje poteka v skladu s taborniškimi zakoni. Organizator si pridržuje pravico, da kršitelja diskvalificira. Nobena ekipa (mladoletni in polnoletni) se ne bo smela udeležiti tekmovanja, če pred tekmovanjem ne bo poslana izjava starešine na mail naveden v razpisu.</p>
+                            <?php break; ?>
+                        <?php case (11): ?>
+                            <p>Ekipe štartnino nakažejo že pred tekmovanjem na transakcijski račun organizatorja, ki je objavljen v razpisu tekmovanja. Po izteku roka prijav ne sprejemamo več prijav ekip. Plačilo štartnine oziroma prijave na dan tekmovanja niso mogoče.</p>
+                            <?php break; ?>
+                        <?php case (12): ?>
+                            <p>V primeru odpovedi ali preložitve tekmovanja iz različnih razlogov mora organizator o tem obvestiti vse prijavljene ekipe vsaj 4 dni pred tekmovanjem. Štartnine se ob odpovedi prijavljenim ekipam v celoti vrnejo.</p>
+                            <?php break; ?>
+                        <?php case (13): ?>
+                            <p>Ekipa ima možnost pritožbe zaradi nepravilnega sojenja ali drugega vzroka 45 minut po neuradni razglasitvi rezultatov.</p>
+                            <?php break; ?>
+                        <?php case (14): ?>
+                            <p>Uradna razglasitev rezultatov je v nedeljo zjutraj.</p>
+                            <?php break; ?>
+                        <?php case (15): ?>
+                            <p>Rezultati tekmovanja in slike so v roku enega tedna objavljeni na spletni strani tekmovanja: http://znot.rst-domzale.si.</p>
+                            <?php break; ?>
+                        <?php case (16): ?>
+                            <p>Za tiste, ki prespijo v telovadnici oz. dvorani so obvezni copati.</p>
+                            <?php break; ?>
+                        <?php case (17): ?>
+                            <p>Vsak udeleženec ZNOT-a prejme našitek tekmovanja.</p>
+                            <?php break; ?>
+                        <?php case (18): ?>
+                            <p>Štartna številka vsake ekipe se izžreba večer prej na zadnjem sestanku ZNOT ekipe, ob prijavi ekipe ali na sestanku vodij ekip po uvodnem zboru.</p>
+                            <?php break; ?>
+                        <?php case (19): ?>
+                            <p>Na vse kontrolne točke morajo priti vsi člani ekipe.</p>
+                            <?php break; ?>
+                        <?php case (20): ?>
+                            <p>Med orientacijskim pohodom tekmovalci ne smejo uporabljati prevoznih sredstev.</p>
+                            <?php break; ?>
+                        <?php case (21): ?>
+                            <p>Ekipa mora kontrolne točke (KT) na progi pobirati v pravilnem vrstnem redu. V nasprotnem primeru se ji KT, po katero se je ekipa vrnila, ne šteje.</p>
+                            <?php break; ?>
+                        <?php case (22): ?>
+                            <p>Proga poteka na državni topografski karti 1:25.000. Ekipa prejme vsaj 1 barvni izvod karte ob štartu na progo.</p>
+                            <?php break; ?>
+                        <?php case (23): ?>
+                            <p>Del proge lahko poteka na karti večjega merila (npr. karta za orientacijski tek). O tem so obveščene vodje ekip na sestanku vodij ekip po končanem uvodnem zboru.</p>
+                            <?php break; ?>
+                        <?php case (24): ?>
+                            <p>Ekipa naloge rešuje skupno, razen v primerih, ko je posebej določeno drugače.</p>
+                            <?php break; ?>
+                        <?php case (25): ?>
+                            <p>Ekipa štarta in rešuje naloge ob času, ki ga določi organizator.</p>
+                            <?php break; ?>
+                        <?php case (26): ?>
+                            <p>Topografski test se rešuje pred odhodom na orientacijski pohod.</p>
+                            <?php break; ?>
+                        <?php case (27): ?>
+                            <p>Ekipa je diskvalificirana, če prekorači dvakratni čas časovnice + čas, ki ga ima ekipa na voljo za reševanje nalog.</p>
+                            <?php break; ?>
+                        <?php case (28): ?>
+                            <p>Na tekmovanju se uporablja elektronski način potrjevanja prisotnosti na KT (SPORTIDENT). Ekipe brez čipov si ob prijavi sposodijo čip, ki ga priskrbi organizator (doplačilo 2€ ob plačilu štartnine). V primeru, da ekipa čip izgubi, mora poravnati račun za izgubljen čip v višini 40€ (velja za vse čipe, ki jih tekmovalci prejmejo in uporabljajo tekom tekmovanja). Na dan ZNOT-a se ob prijavi ekipe plača kavcija za čip v vrednosti 40€, katero se vrne ekipi na cilju ob vrnitvi čipa.</p>
+                            <?php break; ?>
+                        <?php case (29): ?>
+                            <p>V primeru, da SPORTIDENT postaja na KT odpove, ekipa lahko dokaže, svojo prisotnost na KT s pomočjo pametnih naprav(slika).</p>
+                            <?php break; ?>
+                        <?php case (30): ?>
+                            <p>V kolikor mora ekipa na KT zaradi gneče čakati na začetek opravljanja naloge, se ji upošteva mrtvi čas.</p>
+                            <?php break; ?>
+                        <?php case (31): ?>
+                            <p><span class="kt-title">Topografski test</span><br>
+                            Vsak član ekipe posamično rešuje test s topografsko vsebino. Možno je doseči 12 točk na test. Čas reševanja je 5 minut. V primeru, da ekipa šteje 4 člane, lahko najhitrejši član reši tudi peti test. Če tekmovalec na testu ne označi številke izseka, s katerim si pomaga pri reševanju testa, ta za to nalogo avtomatično prejme nič točk.<p><b>Možno število točk: 60</b></p></p>
+                            <?php break; ?>
+                        <?php case (32): ?>
+                            <p><span class="kt-title">Bonus točke</span><br>
+                            Za vsako dekle ekipa prejme nekaj bonus točk. V kategoriji PP in RR/Grče za eno dekle v ekipi 20 točk, za dve dekleti 40 točk, za tri dekleta 60 točk za štiri dekleta 80 točk in za pet deklet 100 točk. <p><b>Možno število točk: 100</b></p></p>
+                            <?php break; ?>
+                        <?php case (33): ?>
+                            <p><span class="kt-title">Orientacijski pohod</span><br>
+                            Vse KT so označene z zastavicami, na njih je SPORTIDENT postaja in „kresnička". Na živih KT lahko kontrolor pripiše število doseženih točk na KT na štartni list ekipe. Časovnica je določena na začetku tekmovanja. Za vsako minuto zamude dobi ekipa 2 negativni točki. Ekipe morajo najti čim več kontrolnih točk. Vsaka šteje 70 točk. Število kontrolnih točk za posamezno kategorijo določi traser glede na težavnost terena in orientacije. O številu KT so obveščene vodje ekip na sestanku vodij ekip, na dan tekmovanja. Ena izmed KT je »KT na vrisani poti«. Na vseh živih KT (razen na KT na vrisani poti) je določen čas za opravljanje naloge, ki se upošteva pri časovnici.<p><b>Možno število točk: GG 560+ PP 700+ RR/Gr 840+</b></p> </p>
+                            <?php break; ?>
+                        <?php case (34): ?>
+                            <p><span class="kt-title">Prihod pod kotom</span><br>
+                            Ekipa mora v ravni vrsti priti na KT pod določenim kotom, ki je napisan na štartnem listu. Odstopanje mora biti manjše od 10 stopinj. Za odstopanje od 5 do 10 stopinj ekipa dobi polovično število točk. Kot pod katerim mora ekipa priti na KT je napisan na štartnem listu. Primer: Če je kot 90 st., mora ekipa priti na KT z vzhoda. <p><b>Možno število točk: 30</b></p></p>
+                            <?php break; ?>
+                        <?php case (35): ?>
+                            <p><span class="kt-title">Prehod minskega polja</span><br>
+                            Je namenjen le PP in RR/Gr ekipam. Ekipa prehodi minsko polje s petimi razdaljami in petimi koti. Za odstopanje v krogu do 1 m pri posamezni točki, ekipa lahko nadaljuje z opravljanjem naloge. Če odstopa več kot za 1 m pa ekipa ne sme nadaljevati. Vsaka pravilno določena točka prinese ekipi 20 točk. Čas za prehod je 10 minut in je vštet v časovnico. Po 10 minutah mora ekipa prenehati z merjenjem. Na minskem polju ni dovoljeno meriti razdalje z laserskim razdaljemerom. <p><b>Možno število točk: 100</b></p></p>
+                            <?php break; ?>
+                        <?php case (36): ?>
+                            <p><span class="kt-title">Bombe!</span><br>
+                            Podobno minskemu polju, namenjena je le GGjem. Po gozdu so postavljeni listki s črkami. Ekipa po istem principu kot za minsko polje (4 razdalje in 4 koti) išče posamezne bombe, ki so označene s črkami. Vsaka pravilna črka prinese 20 točk, dokler ekipa ne zgreši pravilne črke. Črke so med seboj oddaljene vsaj en meter. Časa za nalogo je 10 minut, ki je vštet v časovnico. Po 10 minutah mora ekipa prenehati z merjenjem. <p><b>Možno število točk: 80</b></p></p>
+                            <?php break; ?>
+                        <?php case (37): ?>
+                            <p><span class="kt-title">Spretnostno tekmovanje</span><br>
+                            Ekipa mora uspešno prečkati progo in/ali opraviti praktične naloge, ki jih zahteva kontrolor. Upoštevata se čas ali natančnost prehoda. <p><b>Možno število točk: 75</b></p></p>
+                            <?php break; ?>
+                        <?php case (38): ?>
+                            <p><span class="kt-title">KT na vrisani poti</span><br>
+                            se skriva nekje na poti med dvema kontrolnima točkama. Pot med tema dvema kontrolnima točkama je označena tudi na karti. Za najdemo KT ekipa prejme 70 točk. Za pravilni vris KT na karto ekipa dobi dodatnih 20 točk. KT se vriše s pikico ter krogcem premera do pol centimetra. Pravilnost vrisa se preveri na KT ali na cilju. Dobi lahko tudi 20 točk za krajšo nalogo, ki jo zahteva kontrolor. <p><b>Možno število točk: 40</b></p></p>
+                            <?php break; ?>
+                        <?php case (39): ?>
+                            <p><span class="kt-title">Mrtva KT</span><br>
+                            je označena z zastavico in „kresničko", na njej sta perforator in SORTIDENT postaja. Na njej se ne opravlja naloge, lahko pa je prisoten kontrolor, ki preverja če je na KT prišla celotna ekipa.</p>
+                            <?php break; ?>
+                        <?php case (40): ?>
+                            <p><span class="kt-title">KT presenečenja</span><br>
+                            Kot ime samo pove, lahko pričakujete nalogo presenečenja. <p><b>Možno število točk: 40</b></p></p>
+                            <?php break; ?>
+                        <?php case (41): ?>
+                            <p><span class="kt-title">Skica terena pod kotom</span><br>
+                            Le za PP in RR/Gr ekipe. Ekipa riše skico terena pod kotom v merilu, ki ga določi organizator, z največjim polmerom 150 metrov. Čas risanja 20-30 min (točen čas pove organizator na sestanku vodij ekip-napisan bo tudi na časovnici) je vštet v časovnico. List za risanje skice dobi ekipa na kontrolni točki, kjer tudi odda končni izdelek. V primeru prekoračitve predvidenega časa, je za prvih 20 min prekoračitve -1 točka/min, za vsako nadaljnjo prekoračeno minuto pa -3 točke. <p><b>Možno število točk: 100</b></p></p>
+                            <?php break; ?>
+                        <?php case (42): ?>
+                            <p><span class="kt-title">»Direkt«</span><br>
+                            Le za PP in RR/Gr ekipe. Na štartnem listu ali na živi KT ekipa prejme dva azimuta in eno razdaljo. Najprej gre ekipa za dano razdaljo (D1) v smeri prvega azimuta (A1), nato pa od tam naprej v smeri drugega azimuta (A2). Začetek drugega azimuta ni označen ne na karti, ne v naravi, temveč ekipa sama oceni kdaj se je za določeno razdaljo (D1) premaknila v smeri prvega azimuta (A1). Najmanjša razdalja do KT (od prejšnje KT) je 200 metrov, najdaljša pa 1500 metrov. Ekipa prejme točke (70) za najdeno KT »Direkt« le, če je našla tudi KT pred njo. <p><b>Možno število točk: 70</b></p></p>
+                            <?php break; ?>
+                        <?php case (43): ?>
+                            <p><span class="kt-title">Štafeta</span><br>
+                            Je namenjena GG/PP/RR/Gr ekipam. Ekipa mora opraviti 5 predaj. Vsak član mora opraviti vsaj eno predajo, če ekipa šteje 4 člane, pa lahko eden od članov gre dvakrat. Naloga je vredna 100 točk. Točkuje se relativno po zaostanku glede na čas najboljše ekipe v kategoriji, vendar v primeru, da ekipa preseže dvojni čas najhitreje opravljene naloge, se naloga točkuje z nič točkami. Dodeljen čas za opravljanje naloge je 5 min. Po 8 min pa se opravljanje naloge prekine in takrat se za vsako neperforirano postajo ekipi prišteje pribitek (1,5 min). Končni seštevek opravljanja naloge se ne upošteva pri končnem času celotnega tekmovanja. V primeru, da tekmovalec namerno poškoduje progo, se nalogo točkuje z nič točkami. V primeru goljufije pa kontrolor ekipi dodeli kazenski pribitek 1,5 min. <p><b>Možno število točk: 100</b></p></p>
+                            
+                            <h3>Tabela nalog po kategorijah</h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Naloga</th>
+                                        <th>GG</th>
+                                        <th>PP</th>
+                                        <th>RR/grče</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Topotest</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bonus točke</td>
+                                        <td></td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Orientacijski pohod</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prihod pod kotom</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spretnostno tekmovanje</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>KT na vrisani poti</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>KT presenečenja</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mrtva KT</td>
+                                        <td>X</td>
+                                        <td>XX</td>
+                                        <td>XXX</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bombe</td>
+                                        <td>X</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prehod minskega polja</td>
+                                        <td></td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skica terena pod kotom</td>
+                                        <td></td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Štafeta</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>"Direkt"</td>
+                                        <td></td>
+                                        <td>X</td>
+                                        <td>X</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MOŽNIH TOČK:</td>
+                                        <td>780</td>
+                                        <td>1160</td>
+                                        <td>1280</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            
+                            <?php break; ?>
+                        <?php case (44): ?>
+                            <p>Ekipa je diskvalificirana, če med orientacijskim pohodom uporablja prevozna sredstva, če prekorači dvakratni čas in čas za naloge ali zaradi kršenja pravil in netaborniškega vedenja.</p>
+                            <?php break; ?>
+                        <?php case (45): ?>
+                            <p>Ekipa, ki zbere največ točk je zmagovalna ekipa. Prvim trem ekipam v posamezni kategoriji se podelijo praktične nagrade, lahko pa tudi za najboljše dosežke pri posameznih nalogah in skupno uvrstitev v točkovanju rodov.</p>
+                            <?php break; ?>
+                        <?php case (46): ?>
+                            <p>Pravila so bila zapisana in potrjena iz strani rodove uprave Rodu skalnih taborov, dne 8. 9. 2025</p>
+                            <?php break; ?>
+                        <?php endswitch; ?>
+                        <?php endfor; ?>
+
+
+</section>
+</div>
+</div>
+</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/pravila.blade.php ENDPATH**/ ?>
 ```
@@ -5888,11 +8180,119 @@ class User extends Authenticatable
 # storage/framework/views/37c45c4f3b4749705c10c25ccf0a3698.php
 
 ```php
-<?php $__env->startSection('title', 'Razpis'); ?>
+<?php $__env->startSection('title', 'ZNOT 2025 - Zimsko nočno orientacijsko tekmovanje'); ?>
 
 <?php $__env->startSection('content'); ?>
-    <h1>Razpis</h1>
-    <p>Tukaj so informacije o našem razpisu.</p>
+<div class="hero-container">
+    <div class="content-wrapper">
+        <section class="hero-content">
+            <h1>ZNOT 2025</h1>
+            <p style="color: #4da8da">6. 12. – 7. 12. 2025</p>
+                <a href="https://www.google.com/maps/place/Osnovna+%C5%A1ola+Gradec/@46.0625689,14.8157987,790m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47653a376b98de79:0x382ae46b985df2de!8m2!3d46.0625689!4d14.8183736!16s%2Fg%2F11dxs9yr7q?entry=ttu&g_ep=EgoyMDI1MTAwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 20px;">
+                    <img src="/images/location.svg" alt="Lokacija" class="location">
+                    <h3 class="text-location">Osnovna šola Gradec
+                    </h3>
+                </a>
+            <div class="button-container">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7ydGCC5qmUXG24IN6zFsMftRsV98u3bmxwO0YNSocQd4A9A/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBI19wySbykniKWRibV31EZq5v9eJTZNPk7WJPaeEICA4xHQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+            </div>
+        </section>
+
+        <div class="scrollable-content initial-hide">
+            <section class="info-section">
+                <h2>OSNOVNE INFORMACIJE</h2>
+                <p><b>Kdaj:</b> 6. 12. – 7. 12. 2025</p>
+                <p>Prijave se odprejo ob 14.00 in zaprejo ob 15.30. Nato sledi zbor ekip. Zaključni zbor ekip bo v nedeljo okoli 9.00.
+                </p>
+                <p><b>Kje: Osnovna šola Gradec</b>/</p>
+                <br>
+                <p>Vsi mladoletni udeleženci morajo ob prijavi predložiti še potrdilo za mladoletne osebe, v primeru da tega ne naredijo se ne bodo smeli udeležiti tekmovanja. Prav tako se nobena ekipa (mladoletni in polnoletni) ne bo smela udeležiti tekmovanja, če pred tekmovanjem ne bo poslana Izjava starešine na mail <b>znot.rst@gmail.com</b>. Netaborniške ekipe morajo prav tako poslati enako izjavo, ki jo podpiše predsednik kluba oz. vodja društva.
+                </p>
+                <div class="button-container" style="justify-content:center;">
+                    <a href="<?php echo e(asset('files/izjava-staresine.pdf')); ?>" class="btn btn-custom btn-primary" target="_blank">Izjava starešine</a>
+                    <a href="<?php echo e(asset('files/potrdilo-za-mladoletne.pdf')); ?>" class="btn btn-custom btn-primary" target="_blank">Potrdilo za mladoletne</a>
+                </div>
+
+
+            </section>
+
+            <section class="info-section">
+                <h2>STAROSTNE KATEGORIJE</h2>
+                <ul>
+                    <li>Mlajši gozdovniki in gozdovnice (GG) – od 11 do 12 let</li>
+                    <li>Starejši gozdovniki in gozdovnice (GG) – od 13 do 14 let</li>
+                    <li>Popotniki in popotnice (PP) – od 15 do 20 let</li>
+                    <li>Raziskovalci in raziskovalke (RR) ter grče (Gr) – 21 let in več</li>
+                </ul>
+                <p><b>Prijavljene ekipe tekmujejo v ustrezni kategoriji. Starost tekmovalcev se računa po koledarskem letu.</b></p>
+                <p>Število ekip je po kategorijah omejeno na 25 GG (mlajši) ekip, 25 GG (starejši) ekip, 30 PP ekip in 20 RR&GRČE ekip. Na podlagi števila prijavljenih ekip, se lahko te omejitve spremenijo. Spremembe bomo objavili v obvestilih. Vsako dekle ekipi prinese dodatne točke (skladno s pravili).</p>
+            </section>
+
+            <section class="info-section">
+                <h2>PRIJAVE</h2>
+                <p>Ob prijavi ekipa navede: starostno kategorijo, v kateri tekmuje, ime, priimek, elektronski naslov in telefonsko številko vodje ekipe, prehranske posebnosti.</p>
+                <p>Na tekmovanju se uporablja elektronski sistem perforiranja (SportIdent), zato naj ekipe, ki imajo svoje čipe, to navedejo ob prijavi ter napišejo njegovo številko. <b>Vse ostale ekipe, ki si bodo čip izposodile od organizatorja, morajo pri prijavi oz. pri plačilu štartnine plačati dodatna 2€ za izposojo.</b></p>
+                <!-- <div class="button-container">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScxIFI6naDXaDlA4T8-yiw7UT1bbcayUfp66t0dd-rEqXXtQQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSecCuyssADh18s3zzXIaI0_kLvA__nqNzVBTYOyZPzf_yNWrQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+                </div> -->
+
+                <p>Rok plačila štartnine in s tem prijav je <b>ponedeljek 24. november 2025</b> do polnoči. Prijava ekipe je veljavna šele ob plačilu štartnine in ob poslanem potrdilu plačila na <b>znot.rst@gmail.com</b>, iz katerega je razvidno <b>ime ekipe, rod in datum plačila</b>. Ob nejasnem/nepravilnem plačilu vrnemo štartnino. Štartnina ob prijavi do vključno <b>ponedeljek 17. novembra 2025</b> do polnoči znaša <b>55€</b> (57€ ob izposoji čipa) na ekipo. Po <b>17. novembru 2025</b> se štartnina zviša na <b>75€</b> (77€ ob izposoji čipa) na ekipo.
+                </p>
+
+                <p>Cena se obračuna glede na datum plačila in NE datum izpolnjenega obrazca oz. je nižja cena veljavna le pri plačilu znotraj roka cenejših prijav. V primeru izposoje čipa od organizatorja, mora ekipa ob plačilu štartnine (v primeru cenejših in dražjih prijav) plačati dodatna 2€.
+                </p>
+
+                
+                <p>Odjave so možne do vključno ponedeljka 24. novembra 2025. Do tega datuma vračamo štartnino. Pri odjavi po <b>24. novembru 2025</b> štartnine ne vračamo (prav tako ne plačila za izposojo čipa).
+                </p>
+
+                <p>Na dan ZNOT-a se ob prijavi ekipe plača kavcija za čip v vrednosti 40€, katero se vrne ekipi na cilju ob vrnitvi čipa.
+                </p>
+
+                <div class="button-container" style="justify-content:center;">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7ydGCC5qmUXG24IN6zFsMftRsV98u3bmxwO0YNSocQd4A9A/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
+                </div>
+                <br>
+
+
+
+                <h4>Štartnino lahko poravnate na:</h4>
+                <p>transakcijskem računu: <b>SI56-0230-0001-2196-019</b> odprtem pri Novi ljubljanski banki d.d.
+                </p>
+
+                <p>BIC banke: <b>LJBASI2X</b>
+                </p>
+
+                <p>namen nakazila: <b>ime ekipe + ime rodu</b> 
+                </p>
+                <p> uporabite sklic: <b>1111-2025</b>
+                </p>
+
+                <p> prejemnik: <b>RST Domžale, Kopališka cesta 4, 1230 Domžale</b> 
+                </p>
+
+                <p>(Upoštevali bomo samo tista plačila, za katera se bo iz namena plačila nedvoumno videlo za katero ekipo je namenjeno).
+                </p>
+
+                <p>Plačilo štartnin in prijave na dan tekmovanja niso možne. Pridržujemo si pravico, da rok prijav skrajšamo ob zapolnitvi prostih mest!
+                </p>
+            </section>
+
+            <section class="info-section">
+                <h2>SOLO KATEGORIJA</h2>
+                <p>Za vodnike, ki na ZNOT pridejo kot spremljevalci članov prijavnine ni. Za vse ostale znaša 7€. 
+                </p>
+                <div class="button-container" style="justify-content:center;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBI19wySbykniKWRibV31EZq5v9eJTZNPk7WJPaeEICA4xHQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava solo</a>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/razpis.blade.php ENDPATH**/ ?>
 ```
@@ -6276,6 +8676,27 @@ class User extends Authenticatable
 <?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/vendor/laravel/framework/src/Illuminate/Foundation/Providers/../resources/exceptions/renderer/show.blade.php ENDPATH**/ ?>
 ```
 
+# storage/framework/views/123fbc89d46b29eb9f673cfb371c9229.php
+
+```php
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="https://rst-domzale.si/" target="_blank"><img src="<?php echo e(asset('images/rst-logo-1-e1616518258780.png')); ?>" alt="Rod logo"></a>
+            </div>
+            <div class="footer-info">
+                <p>Za več informacij ali za morebitna vprašanja glede prijav in tekmovanja smo na voljo na: <a href="mailto:znot.rst@gmail.com">znot.rst@gmail.com</a></p>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/profile.php?id=100077435899851&locale=sl_SI" target="_blank" class="social-icon"><img src="<?php echo e(asset('images/fb.png')); ?>" alt="Facebook"></a>
+                <a href="https://www.instagram.com/znot_rst/" target="_blank" class="social-icon"><img src="<?php echo e(asset('images/ig.png')); ?>" alt="Instagram"></a>
+            </div>
+        </div>
+    </div>
+</footer><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/znot-spletna-stran/resources/views/partials/footer.blade.php ENDPATH**/ ?>
+```
+
 # storage/framework/views/0b0f59e39718457a11df0d8f8a995c8e.php
 
 ```php
@@ -6348,6 +8769,114 @@ class User extends Authenticatable
 !.gitignore
 
 ```
+
+# resources/views/partials/header.blade.php
+
+```php
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ route('home') }}">
+            <img src="{{ asset('images/znot-logo-2025.png') }}" alt="ZNOT 2025 Logo" class="img-fluid">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Razpis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('pravila') ? 'active' : '' }}" href="{{ route('pravila') }}">Pravila</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('rezultati') ? 'active' : '' }}" href="{{ route('rezultati') }}">Rezultati</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('galerija') ? 'active' : '' }}" href="{{ route('galerija') }}">Galerija</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+```
+
+# resources/views/partials/footer.blade.php
+
+```php
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="https://rst-domzale.si/" target="_blank"><img src="{{ asset('images/rst-logo-1-e1616518258780.png') }}" alt="Rod logo"></a>
+            </div>
+            <div class="footer-info">
+                <p>Za več informacij ali za morebitna vprašanja glede prijav in tekmovanja smo na voljo na: <a href="mailto:znot.rst@gmail.com">znot.rst@gmail.com</a></p>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/profile.php?id=100077435899851&locale=sl_SI" target="_blank" class="social-icon"><img src="{{ asset('images/fb.png') }}" alt="Facebook"></a>
+                <a href="https://www.instagram.com/znot_rst/" target="_blank" class="social-icon"><img src="{{ asset('images/ig.png') }}" alt="Instagram"></a>
+            </div>
+        </div>
+    </div>
+</footer>
+```
+
+# resources/views/layouts/app.blade.php
+
+```php
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title')</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+</head>
+<body class="{{ Route::currentRouteName() === 'home' ? 'home-page' : '' }}">
+    @include('partials.header')
+    <main>
+    @yield('content')
+    </main>
+    @include('partials.footer')
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/common.js') }}"></script>
+    <script src="{{ asset('js/navbar-mobile.js') }}"></script>
+
+    @yield('scripts')
+</body>
+</html>
+```
+
+# storage/app/public/.gitignore
+
+```
+*
+!.gitignore
+
+```
+
+# storage/app/private/.gitignore
+
+```
+*
+!.gitignore
+
+```
+
+# public/images/homepage/ozadje.jpg
+
+This is a binary file of the type: Image
+
+# public/files/ilovepdf_converted/Potrdilo za mladoletne.pdf
+
+This is a binary file of the type: PDF
+
+# public/files/ilovepdf_converted/Izjava starešine.pdf
+
+This is a binary file of the type: PDF
 
 # app/Http/Controllers/Controller.php
 
