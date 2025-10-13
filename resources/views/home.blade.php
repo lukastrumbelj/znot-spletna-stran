@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'ZNOT 2024 - Zimsko nočno orientacijsko tekmovanje')
+@section('title', 'ZNOT 2025 - Zimsko nočno orientacijsko tekmovanje')
 
 @section('content')
 <div class="hero-container">
     <div class="content-wrapper">
         <section class="hero-content">
-            <h1>ZNOT 2024</h1>
+            <h1>ZNOT 2025</h1>
             <p style="color: #4da8da">2-3.12.2024</p>
             <div class="button-container">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScxIFI6naDXaDlA4T8-yiw7UT1bbcayUfp66t0dd-rEqXXtQQ/viewform" class="btn btn-custom btn-primary" target="_blank">Prijava ekipe</a>
