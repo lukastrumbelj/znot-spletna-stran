@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="hero-container blurred">
+    <div class="hero-background"></div>
     <div class="content-wrapper">
         <div class="scrollable-content">
             <section class="info-section margin-top">
