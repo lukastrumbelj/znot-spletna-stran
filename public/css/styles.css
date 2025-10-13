@@ -173,18 +173,26 @@ body, html {
     z-index: 1;
 }
 
-/* iOS specifično */
+/* iOS specifično - celotna stran ima ozadje + overlay */
 @supports (-webkit-touch-callout: none) {
+    body.home-page {
+        background-image: url('../images/homepage/ozadje.jpg');
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+    }
+    
     .hero-background {
-        position: absolute;
-        top: 0;
+        display: none; /* Na iOS skrijemo ta element */
     }
     
     .hero-container::before {
-        position: absolute;
-        top: 0;
+        position: fixed; /* Overlay ostane fixed */
+        bottom: 0; /* Raztegne se čez cel viewport */
     }
 }
+
 
 
 
