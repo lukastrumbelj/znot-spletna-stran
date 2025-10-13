@@ -180,20 +180,24 @@ body, html {
     }
     
     .hero-background {
-        position: fixed; /* Ostane fixed! */
-        transform: translateZ(0); /* Hardware acceleration */
-        -webkit-transform: translateZ(0);
-        will-change: transform;
+        position: fixed;
+        transform: translate3d(0, 0, 0); /* Uporabi 3D transform */
+        -webkit-transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        perspective: 1000px;
+        -webkit-perspective: 1000px;
     }
     
     .hero-container::before {
-        position: fixed; /* Overlay tudi fixed */
-        transform: translateZ(0);
-        -webkit-transform: translateZ(0);
-        will-change: transform;
+        position: fixed;
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
     }
     
-    /* Backup - če iOS ne podpira backdrop-filter dobro */
+    /* Backup */
     body.home-page {
         background-color: #0a1931;
     }

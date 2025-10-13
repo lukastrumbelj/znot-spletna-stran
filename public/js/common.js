@@ -9,10 +9,26 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Detekcija iOS
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     
-    if (isIOS && heroBackground) {
-        // Za iOS nastavi višino na točno višino viewporta
-        heroBackground.style.height = window.innerHeight + 'px';
-    }
+if (isIOS && heroBackground) {
+    // Za iOS nastavi višino na točno višino viewporta
+    const setIOSHeight = () => {
+        const vh = window.innerHeight;
+        heroBackground.style.height = vh + 'px';
+        const overlay = document.querySelector('.hero-container::before');
+        if (heroContainer) {
+            heroContainer.style.setProperty('--vh', `${vh}px`);
+        }
+    };
+    
+    setIOSHeight();
+    
+    // Posodobi samo ob resize, ne ob scroll
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(setIOSHeight, 250);
+    });
+}
 
     function handleScroll() {
         let scrollPosition = window.scrollY;
