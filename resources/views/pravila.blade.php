@@ -294,7 +294,7 @@
                             <p>Ekipa, ki zbere največ točk je zmagovalna ekipa. Prvim trem ekipam v posamezni kategoriji se podelijo praktične nagrade, lahko pa tudi za najboljše dosežke pri posameznih nalogah in skupno uvrstitev v točkovanju rodov.</p>
                             @break
                         @case(46)
-                            <p>Pravila so bila zapisana in potrjena iz strani rodove uprave Rodu skalnih taborov, dne 8. 9. 2025</p>
+                            <p>Pravila so bila zapisana in potrjena iz strani rodove uprave Rodu skalnih taborov, dne 8. 9. 2026</p>
                             @break
                         @endswitch
                         @endfor
