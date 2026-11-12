@@ -9,9 +9,9 @@
         <section class="hero-content">
             <h1>ZNOT 2026</h1>
             <p style="color: #4da8da">5. 12. – 6. 12. 2026</p>
-                <a href="" target="_blank" style="display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 20px;">
+                <a href="https://maps.app.goo.gl/6dyDWGE4XpRvoget9" target="_blank" style="display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 20px;">
                     <img src="/images/location.svg" alt="Lokacija" class="location">
-                    <h3 class="text-location">Zaenkrat še skrivnost
+                    <h3 class="text-location">Osnovna šola Dragomelj
                     </h3>
                 </a>
             <div class="button-container">
@@ -26,7 +26,7 @@
                 <p><b>Kdaj:</b> 5. 12. – 6. 12. 2026</p>
                 <p>Prijave se odprejo ob 14.00 in zaprejo ob 15.30. Nato sledi zbor ekip. Zaključni zbor ekip bo v nedeljo okoli 9.00.
                 </p>
-                <p><b>Kje: /</b>/</p>
+                <p><b>Kje: </b>Osnovna šola Dragomelj</p>
                 <br>
                 <p>Vsi mladoletni udeleženci morajo ob prijavi predložiti še potrdilo za mladoletne osebe, v primeru da tega ne naredijo se ne bodo smeli udeležiti tekmovanja. Prav tako se nobena ekipa (mladoletni in polnoletni) ne bo smela udeležiti tekmovanja, če pred tekmovanjem ne bo poslana Izjava starešine na mail znot.rst@gmail.com. Netaborniške ekipe morajo prav tako poslati enako izjavo, ki jo podpiše predsednik kluba oz. vodja društva.
                 </p>
