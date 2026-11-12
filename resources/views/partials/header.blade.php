@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('galerija') ? 'active' : '' }}" href="{{ route('galerija') }}">Galerija</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('podporniki') ? 'active' : '' }}" href="{{ route('podporniki') }}">Naši podporniki</a>
+                </li>
             </ul>
         </div>
     </div>

@@ -181,7 +181,7 @@
                             @break
                         @case(42)
                             <p><span class="kt-title">»Direkt«</span><br>
-                            Le za PP in RR/Gr ekipe. Na štartnem listu ali na živi KT ekipa prejme dva azimuta in eno razdaljo. Najprej gre ekipa za dano razdaljo (D1) v smeri prvega azimuta (A1), nato pa od tam naprej v smeri drugega azimuta (A2). Začetek drugega azimuta ni označen ne na karti, ne v naravi, temveč ekipa sama oceni kdaj se je za določeno razdaljo (D1) premaknila v smeri prvega azimuta (A1). Najmanjša razdalja do KT (od prejšnje KT) je 200 metrov, najdaljša pa 1500 metrov. Ekipa prejme točke (70) za najdeno KT »Direkt« le, če je našla tudi KT pred njo. <p><b>Možno število točk: 70</b></p></p>
+                            Le za PP in RR/Gr ekipe. Na štartnem listu ali na živi KT ekipa prejme dva azimuta in eno razdaljo. Najprej gre ekipa za dano razdaljo (D1) v smeri prvega azimuta (A1), nato pa od tam naprej v smeri drugega azimuta (A2). Začetek drugega azimuta ni označen ne na karti, ne v naravi, temveč ekipa sama oceni kdaj se je za določeno razdaljo (D1) premaknila v smeri prvega azimuta (A1). Najmanjša razdalja do KT (od prejšnje KT) je 50 metrov, najdaljša pa 1500 metrov. Ekipa prejme točke (70) za najdeno KT »Direkt« le, če je našla tudi KT pred njo. <p><b>Možno število točk: 70</b></p></p>
                             @break
                         @case(43)
                             <p><span class="kt-title">Štafeta</span><br>

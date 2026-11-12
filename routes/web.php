@@ -8,4 +8,6 @@ Route::get('/', function () {
 Route::view('/pravila', 'pravila')->name('pravila');
 Route::view('/rezultati', 'rezultati')->name('rezultati');
 Route::view('/galerija', 'galerija')->name('galerija');
+Route::view('/podporniki', 'podporniki')->name('podporniki');
+
 
